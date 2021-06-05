@@ -15,31 +15,41 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-       [HttpPost] 
-       public ActionResult Index(string user, string password)
+        [HttpPost]
+        public ActionResult Index(string user, string password)
         {
-            using(Models.MiSistemaEntities db = new Models.MiSistemaEntities())
+
+            try
             {
-                var queryUser = (from u in db.usuario
-                                 where u.nombre == user && u.password == password
-                                 select u).FirstOrDefault();
-                if(queryUser != null)
+                using (Models.MiSistemaEntities db = new Models.MiSistemaEntities())
                 {
-                    FormsAuthentication.SetAuthCookie(queryUser.nombre, true);
-                    return RedirectToAction("Index", "Admin");
-                    
-                    
-                }
-                else
-                {
-                    return View(); 
+                    var queryUser = (from u in db.usuario
+                                     where u.nombre == user && u.password == password
+                                     select u).FirstOrDefault();
+                    if (queryUser == null)
+                    {
+
+                        // FormsAuthentication.SetAuthCookie(queryUser.nombre, true);
+                        //return RedirectToAction("Index", "Admin");
+                        ViewBag.Error = "Usuario o contraseña invalida";
+
+                        return View();
+                    }
+
+                    Session["User"] = queryUser;
 
                 }
 
-                
+                return RedirectToAction("Index", "Admin");
 
             }
-            
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
+            }
+
+
         }
     }
 }
