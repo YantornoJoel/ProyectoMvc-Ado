@@ -18,26 +18,30 @@ namespace WebApplication1.Controllers
        [HttpPost] 
        public ActionResult Index(string user, string password)
         {
-            using(Models.MiSistemaEntities db = new Models.MiSistemaEntities())
+            try
             {
-                var queryUser = (from u in db.usuario
-                                 where u.nombre == user && u.password == password
-                                 select u).FirstOrDefault();
-                if(queryUser != null)
+                using(Models.MiSistemaEntities db = new Models.MiSistemaEntities())
                 {
-                    FormsAuthentication.SetAuthCookie(queryUser.nombre, true);
-                    return RedirectToAction("Index", "Admin");
-                    
+                    var queryUser = (from u in db.usuario
+                                     where u.nombre == user && u.password == password
+                                     select u).FirstOrDefault();
+
+                    if(queryUser == null)
+                    {
+
+                        return View();
+                    }    
+                        
+                    Session["User"] = queryUser;
                     
                 }
-                else
-                {
-                    return View(); 
 
-                }
-
-                
-
+                return RedirectToAction("Index", "Admin");
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
             }
             
         }
