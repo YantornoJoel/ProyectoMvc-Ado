@@ -17,7 +17,7 @@ namespace WebApplication1.Controllers
         }
        [HttpPost] 
        public ActionResult Index(string user, string password)
-        {
+       {
             try
             {
                 using(Models.MiSistemaEntities db = new Models.MiSistemaEntities())
@@ -25,18 +25,27 @@ namespace WebApplication1.Controllers
                     var queryUser = (from u in db.usuario
                                      where u.nombre == user && u.password == password
                                      select u).FirstOrDefault();
+                    var rol = queryUser.rol.id;
 
-                    if(queryUser == null)
+                    if(queryUser != null)
                     {
+                        if(rol == 1)
+                        {
+                            Session["Admin"] = queryUser;
+                            return RedirectToAction("Index", "Admin");
 
-                        return View();
+                        }else if (rol == 2)
+                        {
+                            Session["Student"] = queryUser;
+                            return RedirectToAction("Index", "Payment");
+                        }
                     }    
+                        return View();
                         
-                    Session["User"] = queryUser;
-                    
+                    //var rol = db.rol.FirstOrDefault(x => x.id != queryUser.idRol);
+                    //Console.WriteLine(rol);
                 }
 
-                return RedirectToAction("Index", "Admin");
             }
             catch(Exception ex)
             {
