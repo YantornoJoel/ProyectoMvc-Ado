@@ -4,8 +4,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<!--Sidebar inicio-->
+<div class="sidebar">
+    <center>
+        <img src="https://definicion.de/wp-content/uploads/2019/06/perfildeusuario.jpg" id="usuario" />
+        <h4>Username</h4>
+    </center>
+    <a href="/Admin/usuarios"> <i class="fas fa-users"></i> <span> Usuarios </span> </a>
+    <a href="/Admin/pagos"> <i class="fas fa-money-bill-wave"></i> <span> Pagos </span> </a>
+    <a href="/Admin/contacto"> <i class="fas fa-address-book"></i> <span> Contacto </span> </a>
+    <a href="#"> <i class="fas fa-info-circle"></i> <span> Información </span> </a>
+    <a href="#"> <i class="fas fa-cog"></i> <span> Opciones </span> </a>
+    <a href="#"> <i class="fas fa-sign-out-alt"></i> <span> Cerrar Sesión </span> </a>
+</div>
+<!--Sidebar final-->
+
+
+
+<div class="content">
+    <h1 class="">Texto de prueba en el content</h1>
+    <button class="btn btn-outline-primary">Boton de prueba</button>
+    <h1>Hola</h1>
+
+    <img src="https://i.pinimg.com/originals/07/03/34/07033441850da1a2045efae627670b84.png" class="d-block w-100" alt="...">
+
+</div>
+
+
+
 <p>
     @ViewBag.userrol
-    
+
 </p>
