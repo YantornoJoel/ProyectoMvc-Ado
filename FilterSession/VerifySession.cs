@@ -30,9 +30,9 @@ namespace WebApplication1.FilterSession
                 }
 
             }
-            catch(Exception)
+            catch(Exception ex)
             {
-                filterContext.Result = new RedirectResult("/Login/Index");
+                filterContext.Result = new RedirectResult("/Login/Index"+ex.Message);
 
             }
             //{
