@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+
+<!--Sidebar inicio-->
+<div class="sidebar">
+    <center>
+        <img src="https://definicion.de/wp-content/uploads/2019/06/perfildeusuario.jpg" id="usuario" />
+        <h4>Username</h4>
+    </center>
+    <a href="/Admin/Usuarios"> <i class="fa fa-users"></i> <span> Usuarios </span> </a>
+    <a href="/Admin/pagos"> <i class="fas fa-money-bill-wave-alt"></i><span> Pagos </span> </a>
+    <a href="/Admin/contacto"> <i class="fa fa-address-book"></i> <span> Contacto </span> </a>
+    <a href="#"> <i class="fa fa-info-circle"></i> <span> Información </span> </a>
+    <a href="#"> <i class="fa fa-cog"></i> <span> Opciones </span> </a>
+    <a href="#"> <i class="fa fa-sign-out-alt"></i> <span> Cerrar Sesión </span> </a>
+</div>
+<!--Sidebar final-->
+
+
+
+<div class="content">
+
+    <h1>usuarios</h1>
+
+    <table class="table table-success table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Email</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Joel</td>
+                <td>Yantorno</td>
+                <td>gmail.com</td>
+                <td><i class="fa fa-edit"></i> </td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Pato</td>
+                <td>Ruiz</td>
+                <td>gmail.com</td>
+                <td><i class="fa fa-edit"></i> </td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Luis</td>
+                <td>Gerez</td>
+                <td>gmail.com</td>
+                <td><i class="fa fa-edit"></i> </td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>Luciano</td>
+                <td>Loverso</td>
+                <td>gmail.com</td>
+                <td><i class="fa fa-edit"></i> </td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td>Roy</td>
+                <td>Rojas</td>
+                <td>gmail.com</td>
+                <td><i class="fa fa-edit"></i> </td>
+            </tr>
+            <tr>
+                <th scope="row">6</th>
+                <td>Gustavo</td>
+                <td>Barrionuevo</td>
+                <td>gmail.com</td>
+                <td><i class="fa fa-edit"></i> </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+
+<p>
+    @ViewBag.userrol
+
+</p>
+
+

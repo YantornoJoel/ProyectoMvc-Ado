@@ -9,14 +9,20 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    [AuthorizeUserRol(roles:"admin")]
+    [AuthorizeUserRol(roles:"Admin")]
     public class AdminController : Controller
     {
        
         // GET: Admin
-        public ActionResult Index()
+        public ActionResult Index() { 
+        
+
+            return View();
+        }
+
+        public ActionResult Usuarios()
         {
-                    
+
 
             return View();
         }
