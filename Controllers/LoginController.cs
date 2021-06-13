@@ -39,9 +39,12 @@ namespace WebApplication1.Controllers
                             Session["Student"] = queryUser;
                             return RedirectToAction("Index", "Payment");
                         }
-                    }    
-                        return View();
-                        
+                    }
+
+                    return View();
+
+                   
+
                     //var rol = db.rol.FirstOrDefault(x => x.id != queryUser.idRol);
                     //Console.WriteLine(rol);
                 }
