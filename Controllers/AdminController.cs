@@ -5,11 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using WebApplication1.FilterAuth;
-using WebApplication1.Models;
+//using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    [AuthorizeUserRol(roles:"admin")]
+    //[AuthorizeUserRol(roles:"admin")]
     public class AdminController : Controller
     {
        
