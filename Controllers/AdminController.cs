@@ -9,7 +9,7 @@ using WebApplication1.FilterAuth;
 
 namespace WebApplication1.Controllers
 {
-    //[AuthorizeUserRol(roles:"admin")]
+    [AuthorizeUserRol(roles: "admin")]
     public class AdminController : Controller
     {
        

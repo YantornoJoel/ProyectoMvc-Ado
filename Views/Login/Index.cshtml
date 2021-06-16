@@ -1,9 +1,11 @@
-﻿@model ET.User
-@{
+﻿@model  ET.User
+@{ }
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{ 
 
+}
 <!--
 
 <h2>Login</h2>
@@ -32,19 +34,24 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Login</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body">                                                                                                                                                    
                     <form accept-charset="UTF-8" role="form" method="post" action="/Login/Index">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Usuario" name=@Model.nombre type="text">
+                                @Html.EditorFor(x => x.nombre)
+                                @*@Html.TextBoxFor(model => model.)*@
+                                
+                                
+                                
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name=@Model.password type="password" value="">
+                                @Html.EditorFor(x => x.password)
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <input name="remember" type="checkbox" value="Remember Me"> Recordar password
                                 </label>
+                                @Html.EditorFor(x=>x.Rol)
                             </div>
 
                             <button type="submit" class="btn btn-lg btn-success btn-block" value="Login">Ingresar</button>

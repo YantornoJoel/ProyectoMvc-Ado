@@ -13,63 +13,69 @@ namespace WebApplication1.Controllers
 {
     public class LoginController : Controller
     {
-        private BL.UserBL userBL = new BL.UserBL();
-        //private ET.User userET = new ET.User();
-        
+        private readonly BL.UserBL userBL = new BL.UserBL();
+        //private readonly ET.User userET = new ET.User();
+
         // GET: Login
         public ActionResult Index()
         {
-            return View(userBL.List());
+            //ET.User model = new ET.User();
+            //var contain = userBL.Contain(model);
+
+            return View(userBL.Contain());
         }
        [HttpPost] 
-       public ActionResult Index(ET.User model)
+       public ActionResult Index(User model)
        {
-            //var nombre = model.nombre;
-            //Console.WriteLine(nombre);
             
-            //if (ModelState.IsValid)
-            //{
 
-            //    try
-            //    {
-            //        string connectionstring = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+            if (ModelState.IsValid)
+            {
 
-            //        SqlConnection c = new SqlConnection();
+                try
+                {
+                    string connectionstring = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
 
-            //        c.ConnectionString = connectionstring;
+                    SqlConnection c = new SqlConnection();
 
-               
-            //        SqlCommand cm = new SqlCommand("SELECT * FROM usuario WHERE nombre = @nombre AND password = @password", c);
-            //        cm.CommandType = CommandType.Text;
-            //        cm.Parameters.AddWithValue("@nombre", model.nombre);
-            //        cm.Parameters.AddWithValue("@password", model.password);
-            //        c.Open();
-            //        SqlDataReader query = cm.ExecuteReader();
-            //        c.Close();
-            //        var rol = query.GetInt32(5);
-               
-            //        if (query != null)
-            //            {
-            //                if(rol == 1)
-            //                {
-            //                    Session["Admin"] = query;
-            //                    return RedirectToAction("Index", "Admin");
+                    c.ConnectionString = connectionstring;
 
-            //                }else if (rol == 2)
-            //                {
-            //                    Session["Student"] = query;
-            //                    return RedirectToAction("Index", "Payment");
-            //                }
-            //            }
-            //            return View();
-            //    }
-            //    catch(Exception ex)
-            //    {
-            //        ViewBag.Error = ex.Message;
-            //        return View();
-            //    }
-            //}
-                return View();
+
+                    c.Open();
+                    SqlCommand cm = new SqlCommand("SELECT * FROM usuario WHERE nombre = @nombre AND password = @password", c);
+                    cm.CommandType = CommandType.Text;
+                    cm.Parameters.AddWithValue("@nombre", model.nombre);
+                    cm.Parameters.AddWithValue("@password", model.password);
+                    cm.ExecuteNonQuery();
+                    SqlDataReader query = cm.ExecuteReader();
+                    query.Read();
+                    var rol = query.GetInt32(4);
+                    Console.WriteLine(rol);
+                   
+
+                    if (query != null)
+                    {
+                        if (rol == 1)
+                        {
+                            Session["Admin"] = model;
+                            return RedirectToAction("Index", "Admin");
+
+                        }
+                        else if (rol == 2)
+                        {
+                            Session["Student"] = model;
+                            return RedirectToAction("Index", "Payment");
+                        }
+                    }
+                    return View();
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Error = ex.Message;
+                    return View();
+                }
+            }
+            return View();
         }
     }
 }
