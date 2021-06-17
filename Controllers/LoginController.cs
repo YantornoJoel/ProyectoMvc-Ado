@@ -20,6 +20,8 @@ namespace WebApplication1.Controllers
        {
             try
             {
+
+
                 using(Models.MiSistemaEntities db = new Models.MiSistemaEntities())
                 {
                     var queryUser = (from u in db.usuario
