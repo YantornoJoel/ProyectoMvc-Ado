@@ -1,0 +1,102 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update_user</title>
+</head>
+<body>
+    <div>
+        @*ID*@
+        @{
+            foreach (System.Data.DataRow dr in ViewBag.dbmostrar.Rows)
+            {
+                <form method="post">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">ID</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" value="@dr["Id_usuario"]"  name="Id_usuario" class="col-xs-10 col-sm-8" />
+
+                        </div>
+                    </div>
+
+                    @*NOMBRE*@
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">Nombre</label>
+
+                        <div class="col-sm-9">
+                            <input type="text"  value="@dr["Nombre"]" name="Nombre" class="col-xs-10 col-sm-8" />
+
+                        </div>
+                    </div>
+
+                    @*EMAIL*@
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">Email</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" value="@dr["Email"]" name="Email" class="col-xs-10 col-sm-8" />
+
+                        </div>
+                    </div>
+
+                    @*PASSWORD*@
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">Password</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" value="@dr["Password"]" name="Password" class="col-xs-10 col-sm-8" />
+
+                        </div>
+                    </div>
+
+                    @*PASSWORD*@
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">Fecha</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" value="@dr["Fecha_nacimiento"]" name="Fecha_nacimiento" class="col-xs-10 col-sm-8" />
+
+                        </div>
+                    </div>
+
+
+                    @*PASSWORD*@
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">Id Rol</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" value="@dr["Id_rol"]" name="Id_rol" class="col-xs-10 col-sm-8" />
+
+                        </div>
+                    </div>
+
+
+                </form>
+            }
+
+
+        }
+
+    </div>
+    @{
+        if (TempData["msg"] != null)
+        {
+            <script>alert('@TempData["msg"]')</script>
+        }
+
+    }
+
+</body>
+</html>
