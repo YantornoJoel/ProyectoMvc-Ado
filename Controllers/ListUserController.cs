@@ -14,7 +14,7 @@ namespace WebApplication1.Controllers
     public class ListUserController : Controller
     {
         // GET: ListUser
-        database_access.db dbmostrar = new database_access.db();
+        db dbmostrar = new db();
         public ActionResult Show_data()
         {
             DataSet d = dbmostrar.Show_data();
@@ -35,40 +35,48 @@ namespace WebApplication1.Controllers
 
             Usuario usua = new Usuario();
             //usua.id = int.Parse(fc["ID"]);
-            usua.nombre = fc["Nombre"];
-            usua.email = fc["Email"];
+            usua.nombre = fc["nombre"];
+            usua.email = fc["email"];
             usua.password = fc["Password"];
-            usua.fecha = DateTime.Parse(fc["Fecha_nacimiento"]);
-            usua.idRol =  int.Parse(fc["Id_rol"]);
+            usua.fecha = DateTime.Parse(fc["fecha"]);
+            usua.idRol =  int.Parse(fc["idRol"]);
             dbmostrar.Add_user(usua);
             TempData["msg"] = "Usuario dado de alta con exito";
 
             return View();
         }
-        public ActionResult Update_user(int id)
-        {
-            DataSet ds = dbmostrar.Show_user(id);
-            ViewBag.emp = ds.Tables[0];
-            return View();
-        }
+        //public ActionResult Update_user(int id)
+        //{
+        //    DataSet ds = dbmostrar.Show_user(id);
+        //    ViewBag.emp = ds.Tables[2];
+        //    return View();
+
+        //}
+
+
         public ActionResult Update_user(int id, FormCollection fc)
         {
             Usuario usua = new Usuario();
 
             //int.Parse(fc["ID"]);
 
-            usua.id = id;
-            usua.nombre = fc["Nombre"];
-            usua.email = fc["Email"];
-            usua.password = fc["Password"];
-            usua.fecha = DateTime.Parse(fc["Fecha_nacimiento"]);
-            usua.idRol = int.Parse(fc["Id_rol"]);
+            usua.id = int.Parse(fc["id"]);
+            usua.nombre = fc["nombre"];
+            usua.email = fc["email"];
+            usua.password = fc["password"];
+            usua.fecha = DateTime.Parse(fc["fecha"]);
+            usua.idRol = int.Parse(fc["idRol"]);
             dbmostrar.Update_user(usua);
             TempData["msg"] = "Actualizacion con exito";
+            return RedirectToAction("Show_data");
+        }
 
+        public ActionResult Delete_user(int id)
+        {
 
-
-            return View();
+            dbmostrar.Delete_user(id);
+            TempData["msg"] = "Borrado con exito";
+            return RedirectToAction("Show_data");
         }
     }
 }

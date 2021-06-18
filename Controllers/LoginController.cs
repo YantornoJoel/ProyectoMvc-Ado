@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace WebApplication1.Controllers
 {
@@ -23,9 +25,11 @@ namespace WebApplication1.Controllers
 
 
                 using(Models.MiSistemaEntities db = new Models.MiSistemaEntities())
-                {
+                { 
+                   string epass = database_access.Encrypt.GetSHA256(password);
+
                     var queryUser = (from u in db.usuario
-                                     where u.nombre == user && u.password == password
+                                     where u.nombre == user && u.password == epass
                                      select u).FirstOrDefault();
                     var rol = queryUser.rol.id;
 

@@ -135,6 +135,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="database_access\db.cs" />
+    <Compile Include="database_access\Encrypt.cs" />
     <Compile Include="database_access\Usuario.cs" />
     <Compile Include="FilterAuth\AuthorizeRoles.cs" />
     <Compile Include="FilterSession\VerifySession.cs" />

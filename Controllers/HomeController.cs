@@ -9,6 +9,8 @@ using System.Data;
 using System.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Threading.Tasks;
+
 
 namespace WebApplication1.Controllers
 {
@@ -70,7 +72,9 @@ namespace WebApplication1.Controllers
 
                     cm.Parameters["@nom"].Value = nom;
                     cm.Parameters["@email"].Value = email;
-                    cm.Parameters["@pass"].Value = pass;
+               // cm.Parameters["@pass"].Value = pass;
+
+                    cm.Parameters["@pass"].Value = database_access.Encrypt.GetSHA256(pass.ToString());
                     cm.Parameters["@fecha"].Value = fecha;
                     cm.Parameters["@idrol"].Value = idrol;
                     
