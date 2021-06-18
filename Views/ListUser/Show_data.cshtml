@@ -33,15 +33,21 @@
 
 
                 <tr>
-                    <td>@ds["Id_usuario"]</td>
-                    <td>@ds["Nombre"]</td>
-                    <td>@ds["Email"]</td>
-                    <td>@ds["Password"]</td>
-                    <td>@ds["Fecha_nacimiento"]</td>
-                    <td>@ds["Id_rol"]</td>
+                    
+
                     <td>
-                        <a href="~/Views/ListUser/Update_user.cshtml=@ds["Id_usuario"]">Actualizar</a>
-                        <a>Eliminar</a>
+
+                   <input value="@ds["id"]" /> 
+                    
+                    </td>
+                    <td>@ds["nombre"]</td>
+                    <td>@ds["email"]</td>
+                    <td>@ds["password"]</td>
+                    <td>@ds["fecha"]</td>
+                    <td>@ds["idRol"]</td>
+                    <td>
+                        <a href="/ListUser/Update_user?@ds["id"]">Actualizar</a>
+                        <a href="/ListUser/Delete_user?@ds["id"]">Eliminar</a>
 
                     </td>
 

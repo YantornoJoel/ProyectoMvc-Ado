@@ -26,7 +26,7 @@ namespace WebApplication1.Controllers
 
                 using(Models.MiSistemaEntities db = new Models.MiSistemaEntities())
                 { 
-                    string epass = database_access.Encrypt.GetSHA256(password);
+                   string epass = database_access.Encrypt.GetSHA256(password);
 
                     var queryUser = (from u in db.usuario
                                      where u.nombre == user && u.password == epass

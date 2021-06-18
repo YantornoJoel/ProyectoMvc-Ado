@@ -39,7 +39,7 @@ namespace WebApplication1.database_access
             SqlCommand com = new SqlCommand("sp_update_user", con);
             com.CommandType = CommandType.StoredProcedure;
             //revisar si anda con el id
-            com.Parameters.AddWithValue("@id", up.nombre);
+            com.Parameters.AddWithValue("@id", up.id);
             com.Parameters.AddWithValue("@nom", up.nombre);
             com.Parameters.AddWithValue("@email", up.email);
             com.Parameters.AddWithValue("@pass", up.password);
@@ -69,12 +69,14 @@ namespace WebApplication1.database_access
 
         public DataSet Show_data()
         {
-            SqlCommand com = new SqlCommand("sp_traer_usuarios",con);
+            SqlCommand com = new SqlCommand("sp_traer_usuarios", con);
             com.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataSet ds = new DataSet();
             da.Fill(ds);
             return ds;
+
+
 
 
 
