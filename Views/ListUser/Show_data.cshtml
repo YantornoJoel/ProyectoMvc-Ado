@@ -27,20 +27,20 @@
             </thead>
             <tbody>
                 @{ 
-                    foreach (System.Data.DataRow dr in ViewBag.emp.Rows)
+                    foreach (System.Data.DataRow ds in ViewBag.emp.Rows)
                     { 
 
 
 
                 <tr>
-                    <td>@dr["Id_usuario"]</td>
-                    <td>@dr["Nombre"]</td>
-                    <td>@dr["Email"]</td>
-                    <td>@dr["Password"]</td>
-                    <td>@dr["Fecha_nacimiento"]</td>
-                    <td>@dr["Id_rol"]</td>
+                    <td>@ds["Id_usuario"]</td>
+                    <td>@ds["Nombre"]</td>
+                    <td>@ds["Email"]</td>
+                    <td>@ds["Password"]</td>
+                    <td>@ds["Fecha_nacimiento"]</td>
+                    <td>@ds["Id_rol"]</td>
                     <td>
-                        <a href="~/Views/ListUser/Update_user.cshtml=@dr["Id_usuario"]">Actualizar</a>
+                        <a href="~/Views/ListUser/Update_user.cshtml=@ds["Id_usuario"]">Actualizar</a>
                         <a>Eliminar</a>
 
                     </td>
