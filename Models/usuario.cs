@@ -11,10 +11,12 @@ namespace WebApplication1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class usuario
     {
         public int id { get; set; }
+        [DisplayName("Nombre Usuario")]
         public string nombre { get; set; }
         public string email { get; set; }
         public string password { get; set; }
@@ -22,5 +24,6 @@ namespace WebApplication1.Models
         public Nullable<int> idRol { get; set; }
     
         public virtual rol rol { get; set; }
+        public object Models { get; internal set; }
     }
 }
