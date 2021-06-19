@@ -19,62 +19,63 @@ namespace WebApplication1.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            //ET.User model = new ET.User();
-            //var contain = userBL.Contain(model);
-
-            return View(userBL.Contain());
+            ET.User model = new ET.User();
+            return View(model);
         }
-       [HttpPost] 
-       public ActionResult Index(User model)
-       {
-            
+        [HttpPost]
+        public ActionResult Index(ET.User model)
 
-            if (ModelState.IsValid)
-            {
+        {
 
-                try
-                {
-                    string connectionstring = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+            var validate = userBL.Contain(model.nombre, model.password);
+            Console.WriteLine(validate);
 
-                    SqlConnection c = new SqlConnection();
+            //if (ModelState.IsValid)
+            //{
 
-                    c.ConnectionString = connectionstring;
+            //    try
+            //    {
+            //        string connectionstring = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+
+            //        SqlConnection c = new SqlConnection();
+
+            //        c.ConnectionString = connectionstring;
 
 
-                    c.Open();
-                    SqlCommand cm = new SqlCommand("SELECT * FROM usuario WHERE nombre = @nombre AND password = @password", c);
-                    cm.CommandType = CommandType.Text;
-                    cm.Parameters.AddWithValue("@nombre", model.nombre);
-                    cm.Parameters.AddWithValue("@password", model.password);
-                    cm.ExecuteNonQuery();
-                    SqlDataReader query = cm.ExecuteReader();
-                    query.Read();
-                    var rol = query.GetInt32(4);
-                    Console.WriteLine(rol);
+            //        c.Open();
+            //        SqlCommand cm = new SqlCommand("SELECT * FROM usuario WHERE nombre = @nombre AND password = @password", c);
+            //        cm.CommandType = CommandType.Text;
+            //        cm.Parameters.AddWithValue("@nombre", model.nombre);
+            //        cm.Parameters.AddWithValue("@password", model.password);
+            //        cm.ExecuteNonQuery();
+            //        SqlDataReader query = cm.ExecuteReader();
+            //        query.Read();
+            //        var rol = query.GetInt32(4);
+            //        Console.WriteLine(rol);
                    
 
-                    if (query != null)
-                    {
-                        if (rol == 1)
-                        {
-                            Session["Admin"] = model;
-                            return RedirectToAction("Index", "Admin");
+            //        if (query != null)
+            //        {
+            //            if (rol == 1)
+            //            {
+            //                Session["Admin"] = model;
+            //                return RedirectToAction("Index", "Admin");
 
-                        }
-                        else if (rol == 2)
-                        {
-                            Session["Student"] = model;
-                            return RedirectToAction("Index", "Payment");
-                        }
-                    }
-                    return View();
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Error = ex.Message;
-                    return View();
-                }
-            }
+            //            }
+            //            else if (rol == 2)
+            //            {
+            //                Session["Student"] = model;
+            //                return RedirectToAction("Index", "Payment");
+            //            }
+            //        }
+            //        return View();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        ViewBag.Error = ex.Message;
+            //        return View();
+            //    }
+            //}
             return View();
         }
     }

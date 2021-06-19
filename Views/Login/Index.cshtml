@@ -1,65 +1,31 @@
-﻿@model  ET.User
-@{ }
+﻿@model ET.User
+
+
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@{ 
 
-}
-<!--
+<h2>Index</h2>
 
-<h2>Login</h2>
-<div>
-    <form method="post" action="/Login/Index">
-        <div class="form-group">
-            <label>Ingresa nombre de usuario</label>
-            <input type="text" name="user" value="" />
+<div class="row">
+    @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+    {
+        
+        <div class="col-md-3 form-horizontal">
+            <br />
+            @Html.TextBoxFor(x => x.nombre,
+               new { @class = "form-control", placeholder = "Nombre", autofocus = "autofocus" })
+            @Html.ValidationMessageFor(x => x.nombre, null, new { @class = "text-danger" })
+            <br />
+            @Html.TextBoxFor(x => x.password,
+               new { @class = "form-control", placeholder = "Password" })
+            @Html.ValidationMessageFor(x => x.password, null, new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            <label>Ingresa contraseña</label>
-            <input type="password" name="password" value="" />
+        <div>
+            <button class="btn btn-primary" type="submit">
+                Enviar datos
+            </button>
         </div>
-        <button type="submit">Ingresar</button>
-    </form>
+    }
 </div>
-    -->
-
-
-<hr />
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Login</h3>
-                </div>
-                <div class="panel-body">                                                                                                                                                    
-                    <form accept-charset="UTF-8" role="form" method="post" action="/Login/Index">
-                        <fieldset>
-                            <div class="form-group">
-                                @Html.EditorFor(x => x.nombre)
-                                @*@Html.TextBoxFor(model => model.)*@
-                                
-                                
-                                
-                            </div>
-                            <div class="form-group">
-                                @Html.EditorFor(x => x.password)
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input name="remember" type="checkbox" value="Remember Me"> Recordar password
-                                </label>
-                                @Html.EditorFor(x=>x.Rol)
-                            </div>
-
-                            <button type="submit" class="btn btn-lg btn-success btn-block" value="Login">Ingresar</button>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
