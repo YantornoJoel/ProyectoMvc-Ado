@@ -17,6 +17,7 @@ namespace WebApplication1.Controllers
     
     public class HomeController : Controller
     {
+        private BL.UserBL userBL = new BL.UserBL();
         public ActionResult Index()
         {
             return View();
@@ -40,60 +41,12 @@ namespace WebApplication1.Controllers
     
 
             [HttpPost]
-            public ActionResult Contact( string nom, string email, string pass, DateTime fecha, int idrol )
-            
-            
+            public ActionResult Contact(ET.User user)
             {
-
-                try
-                {
-
-
-                    SqlConnection c = new SqlConnection("Data Source = .\\SQLEXPRESS; Initial Catalog = NSLP; Integrated Security = True");
-
-                    //string connectionstring = ConfigurationManager.ConnectionStrings["MiSistemaEntities"].ConnectionString;
-
-                    //SqlConnection  c = new SqlConnection();
-
-                    //c.ConnectionString = connectionstring;
-
-                    //using (Models.MiSistemaEntities u = new Models.MiSistemaEntities());
-
-                    
-
-                    SqlCommand cm = new SqlCommand("sp_insertar_user", c);
-                    cm.CommandType = CommandType.StoredProcedure;
-
-                    cm.Parameters.Add("@nom", SqlDbType.VarChar);
-                    cm.Parameters.Add("@email", SqlDbType.VarChar);
-                    cm.Parameters.Add("@pass", SqlDbType.VarChar);
-                    cm.Parameters.Add("@fecha", SqlDbType.DateTime);
-                    cm.Parameters.Add("@idrol", SqlDbType.Int);
-
-                    cm.Parameters["@nom"].Value = nom;
-                    cm.Parameters["@email"].Value = email;
-               // cm.Parameters["@pass"].Value = pass;
-
-                    cm.Parameters["@pass"].Value = database_access.Encrypt.GetSHA256(pass.ToString());
-                    cm.Parameters["@fecha"].Value = fecha;
-                    cm.Parameters["@idrol"].Value = idrol;
-                    
-                    c.Open();
-
-                    cm.ExecuteNonQuery();
-                    //mensajes al usuario de confirmacion
-
-                    c.Close();
-
+                userBL.Insert(user);
                 return View();
-                
-
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-
-                }
             }
-}
+
+        
+    }
 }
