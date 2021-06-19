@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -9,6 +9,9 @@ using System.Web.Mvc;
 using System.Web.Security;
 using ET;
 using BL;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
+
 namespace WebApplication1.Controllers
 {
     public class LoginController : Controller

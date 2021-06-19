@@ -138,8 +138,12 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ErrorExController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListUserController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="database_access\db.cs" />
+    <Compile Include="database_access\Encrypt.cs" />
+    <Compile Include="database_access\Usuario.cs" />
     <Compile Include="FilterAuth\AuthorizeRoles.cs" />
     <Compile Include="FilterSession\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
@@ -395,6 +399,9 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\ListUser\Show_data.cshtml" />
+    <Content Include="Views\ListUser\Add_user.cshtml" />
+    <Content Include="Views\ListUser\Update_user.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

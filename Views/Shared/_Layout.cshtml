@@ -4,66 +4,88 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@ViewBag.Title Instituto La Paz</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
+
 <body>
-    <header>
-        <nav class="navbar-brand bg-dark fixed-top">
+    <div class="container px-4 px-lg-5">
+
+        <div class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+            
             <div class="container">
-                <a class="navbar-brand">@Html.ActionLink("Instituto La Paz", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
                 
 
-                <div class="active">
 
-                    <ul class="nav pull-right">
-
-                        <li class="active nav-item">
-                            
-                            <a class=" active navbar-brand link-primary">
+                <div class="">
 
 
-                                @Html.ActionLink("Inicio", "Index", "Home")
-                            </a>
-                              
-                        
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item">
+
+                            <a class="navbar-brand">@Html.ActionLink("Instituto La Paz", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="navbar-brand"> @Html.ActionLink("Carreras", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
                         </li>
 
 
                         <li class="nav-item ">
-                            <a class ="navbar-brand">
-                                @Html.ActionLink("Acerca de", "About", "Home")
-                            </a>
-                        </li>
+                            <a class="navbar-brand"> @Html.ActionLink("Pago de cuotas", "Index", "ErrorEx", new { area = "" }, new { @class = "navbar-brand" }) </a>
 
+                        </li>
+                        <li class="nav-item ">
+                            <a class="navbar-brand"> @Html.ActionLink("Panel Admin", "Index", "Admin", new { area = "" }, new { @class = "navbar-brand" }) </a>
+
+                        </li>
+                        <li class="nav-item ">
+                            <a class="navbar-brand"> @Html.ActionLink("Alta de Alumno", "Contact", "Home", new { area = "" }, new { @class = "navbar-brand" }) </a>
+
+                        </li>
+                        <li class="nav-item ">
+                            <a class="navbar-brand"> @Html.ActionLink("Ver datos", "Show_data", "ListUser", new { area = "" }, new { @class = "navbar-brand" }) </a>
+
+                        </li>
 
                         <li class="nav-item ">
-                            <a class ="navbar-brand">
-                                @Html.ActionLink("Contacto", "Contact", "Home")
-                            </a>
+                            <a class="navbar-brand active alert-success"> @Html.ActionLink("Login", "Index", "Login", new { area = "" }, new { @class = "navbar-brand" }) </a>
 
                         </li>
+
+
+
+
+
+
                     </ul>
+                   
                 </div>
             </div>
-        </nav>
-    </header>
+        </div>
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <div class="container body-content">
 
-   
+            @RenderBody()
+            
+
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
 </body>
 </html>
 
 
 
-<
+
