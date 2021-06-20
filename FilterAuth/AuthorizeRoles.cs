@@ -9,71 +9,73 @@ using WebApplication1.Models;
 namespace WebApplication1.FilterAuth
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public class AuthorizeUserRol: AuthorizeAttribute
+     public class AuthorizeUserRol: AuthorizeAttribute
     {
-        private usuario userA, userS;
-        
-        private MiSistemaEntities db = new MiSistemaEntities();
-        private string roles;
-        
-        public AuthorizeUserRol(string roles)
-        {
-            this.roles = roles;
-        }
-        public override void OnAuthorization(AuthorizationContext filterContext)
-        //{
-        //    base.OnAuthorization(filterContext);
-        //}
-        {
+        /*     
+             private usuario userA, userS;
 
-            try
-            {
+             private MiSistemaEntities db = new MiSistemaEntities();
+             private string roles;
 
-                userA = (usuario)HttpContext.Current.Session["Admin"];
-                if (userA == null)
-                {
-                    userS = (usuario)HttpContext.Current.Session["Student"];
-                    var rolName2 = (from rs in db.rol
-                                    where rs.nombre == roles
-                                    && rs.id == userS.idRol
-                                    select rs.nombre).FirstOrDefault();
-                    if (rolName2 != roles)
-                    {
-                        filterContext.Result = new RedirectResult("~/Views/ErrorEx/Index");
-                    }
-                }
-                else
-                {
-                    var rolName = (from r in db.rol
-                                   where r.id == userA.idRol
-                                   && r.nombre == roles
-                                   select r.nombre).FirstOrDefault();
+             public AuthorizeUserRol(string roles)
+             {
+                 this.roles = roles;
+             }
+             public override void OnAuthorization(AuthorizationContext filterContext)
+             //{
+             //    base.OnAuthorization(filterContext);
+             //}
+             {
 
-                    if (rolName != roles)
-                    {
+                 try
+                 {
 
-                        filterContext.Result = new RedirectResult("~/Views/ErrorEx/Index");
-                    }
-                }
-                
-               
-            
-            }
-            catch (Exception ex)
-            {
-                filterContext.Result = new RedirectResult("~/Views/ErrorEx/Index " + ex.Message+ " Error en el authorize");
-            }
+                     userA = (usuario)HttpContext.Current.Session["Admin"];
+                     if (userA == null)
+                     {
+                         userS = (usuario)HttpContext.Current.Session["Student"];
+                         var rolName2 = (from rs in db.rol
+                                         where rs.nombre == roles
+                                         && rs.id == userS.idRol
+                                         select rs.nombre).FirstOrDefault();
+                         if (rolName2 != roles)
+                         {
+                             filterContext.Result = new RedirectResult("~/Views/ErrorEx/Index");
+                         }
+                     }
+                     else
+                     {
+                         var rolName = (from r in db.rol
+                                        where r.id == userA.idRol
+                                        && r.nombre == roles
+                                        select r.nombre).FirstOrDefault();
 
+                         if (rolName != roles)
+                         {
 
-        }
+                             filterContext.Result = new RedirectResult("~/Views/ErrorEx/Index");
+                         }
+                     }
 
 
 
+                 }
+                 catch (Exception ex)
+                 {
+                     filterContext.Result = new RedirectResult("~/Views/ErrorEx/Index " + ex.Message+ " Error en el authorize");
+                 }
 
-            //var encryptCookie = context.HttpContext.Request.Cookies.Get(".ASPXAUTH");
-            //var decryptCookie = FormsAuthentication.Decrypt(encryptCookie.Value);
+
+             }
 
 
-        
+
+
+                 //var encryptCookie = context.HttpContext.Request.Cookies.Get(".ASPXAUTH");
+                 //var decryptCookie = FormsAuthentication.Decrypt(encryptCookie.Value);
+
+
+       */
     }
-}
+} 
+   

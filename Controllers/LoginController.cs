@@ -18,6 +18,8 @@ namespace WebApplication1.Controllers
        [HttpPost] 
        public ActionResult Index(string user, string password)
        {
+            return View();
+            /*
             try
             {
                 using(Models.MiSistemaEntities db = new Models.MiSistemaEntities())
@@ -55,7 +57,7 @@ namespace WebApplication1.Controllers
                 ViewBag.Error = ex.Message;
                 return View();
             }
-            
+            */
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿
+﻿@model WebApplication1.Models.usuario
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,40 +7,40 @@
 <link href="~/Content/Site.css" rel="stylesheet" />
 
 
-    <head>
-        <title>User Information and Form</title>
+<head>
+    <title>User Information and Form</title>
 
-        <!--JQUERY-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-        <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
-        <link rel="stylesheet"
-              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
-        <!-- Los iconos tipo Solid de Fontawesome-->
-        <link rel="stylesheet"
-              href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
-        <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
-        <!-- Nuestro css-->
-        <link rel="stylesheet" type="text/css" href="static/css/user-form.css"
-             
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="static/css/user-form.css" />
+
         <!-- DATA TABLE -->
-        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
-        <script type="text/javascript">
-            $(document).ready(function () {
-                //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
-                $('#userList').DataTable();
-            });
-        </script>
-    </head>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+            $('#userList').DataTable();
+        });
+    </script>
+</head>
 
 
 
@@ -50,7 +50,7 @@
         <img src="https://images.vexels.com/media/users/3/131263/isolated/preview/af6816ec67ec51da6b275a4aa08d236c-icono-de-c-iacute-rculo-de-bloqueo-by-vexels.png" id="usuario" />
         <h4>Administración</h4>
     </center>
-    <a href="/Admin/usuarios"> <i class="fas fa-users"></i> <span> Usuarios </span> </a>
+    <a href="~/Views/Admin/ListUsers.cshtml"> <i class="fas fa-users"></i> <span> Usuarios </span> </a>
     <a href="/Admin/pagos"> <i class="fas fa-money-bill-wave"></i> <span> Pagos </span> </a>
     <a href="/Admin/contacto"> <i class="fas fa-address-book"></i> <span> Contacto </span> </a>
     <a href="#"> <i class="fas fa-info-circle"></i> <span> Información </span> </a>
@@ -62,90 +62,68 @@
 
 
 <div class="content">
-   
-    <body>
-        <div class="container">
-            <div class="mx-auto col-sm-8 main-section" id="myTab" role="tablist">
-                <ul class="nav nav-tabs justify-content-end">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">Lista de Alumnos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="true">Alta de Alumno</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Administración de Usuarios</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                  <form runat="server" id="form1">
-                                      <div class="col-md-8">
-                                          <asp:GridView id="empgrid" runat="server" class="table">
 
+    <h2 class="text-center mb-4">Crear usuario</h2>
 
-                                          </asp:GridView>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
+        <div class="form-horizontal">
+            
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group pt-4">
+                @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-                                      </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
+            <div class="form-group">
+                @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-                                  </form>
+            <div class="form-group">
+                @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
+            <div class="form-group">
+                @Html.LabelFor(model => model.idRol, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.idRol, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.idRol, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="form" role="tabpanel" aria-labelledby="form-tab">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Datos del Usuario</h4>
-                            </div>
-                            <div class="card-body float-center">
-                                <form class="form" role="form" autocomplete="off" method="post">
-
-                                    <div class="form-group">
-                                        <label for="inputName">Nombre</label>
-                                        <input type="text" class="form-control" name="nom" placeholder="Nombre" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputEmail3">Email</label>
-                                        <input type="email" class="form-control" name="email" placeholder="Email" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputPassword3">Password</label>
-                                        <input type="text" class="form-control" name="pass" placeholder="Password" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputName">Fecha Nacimiento</label>
-                                        <input type="date" class="form-control" name="fecha" placeholder="Fecha Nac" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputName">Rol</label>
-
-                                        <select name="idrol" class="form-control">
-                                            <option value="1">ADMINISTRADOR</option>
-                                            <option value="2">USUARIO</option>
-
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <Button type="submit" name="BtnAltaUser" class="btn btn-success btn-lg float-left">Registrar</Button>
-
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-outline-primary" />
                 </div>
             </div>
         </div>
-    </body>
+    }
+
+    <div class="btn btn-outline-warning">
+        @Html.ActionLink("<<Volver al listado", "Index")
+    </div>
 
 
 </div>

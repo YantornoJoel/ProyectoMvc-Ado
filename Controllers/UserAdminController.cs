@@ -9,21 +9,15 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-   // [AuthorizeUserRol(roles:"admin")]
-    public class AdminController : Controller
+    [AuthorizeUserRol(roles:"admin")]
+    public class UserAdminController : Controller
     {
        
         // GET: Admin
         public ActionResult Index()
         {
+                    
 
-            var numero = 1;
-            Console.WriteLine("numero;", numero);
-            return View();
-        }
-
-        public ActionResult ListUsers()
-        {
             return View();
         }
     }
