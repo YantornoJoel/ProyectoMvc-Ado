@@ -12,7 +12,7 @@ using System.Configuration;
 
 namespace WebApplication1.Controllers
 {
-    [AuthorizeUserRol(roles: "admin")]
+   // [AuthorizeUserRol(roles: "admin")]
     public class AdminController : Controller
     {
         public ActionResult Index()
@@ -21,7 +21,15 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        public ActionResult ListUser()
+        {
+            return View();
+        }
 
+        public ActionResult Add()
+        {
+            return View();
+        }
 
         //GET: Admin
         [HttpPost]

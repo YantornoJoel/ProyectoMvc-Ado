@@ -1,4 +1,4 @@
-﻿using ET;
+﻿//using ET;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,7 +15,7 @@ namespace WebApplication1.FilterAuth
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class AuthorizeUserRol : AuthorizeAttribute
     {
-        private ET.User userA, userS;
+       /* private ET.User userA, userS;
 
         //private MiSistemaEntities db = new MiSistemaEntities();
         private string roles;
@@ -110,7 +110,7 @@ namespace WebApplication1.FilterAuth
         //var encryptCookie = context.HttpContext.Request.Cookies.Get(".ASPXAUTH");
         //var decryptCookie = FormsAuthentication.Decrypt(encryptCookie.Value);
 
-
+*/
 
     }
 }

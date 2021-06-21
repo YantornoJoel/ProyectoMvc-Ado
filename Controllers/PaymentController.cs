@@ -7,7 +7,7 @@ using WebApplication1.FilterAuth;
 
 namespace WebApplication1.Controllers
 {
-    [AuthorizeUserRol(roles: "student")]
+   // [AuthorizeUserRol(roles: "student")]
     public class PaymentController : Controller
     {
         // GET: Payment

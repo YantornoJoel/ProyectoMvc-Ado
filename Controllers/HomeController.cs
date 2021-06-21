@@ -17,7 +17,7 @@ namespace WebApplication1.Controllers
     
     public class HomeController : Controller
     {
-        private BL.UserBL userBL = new BL.UserBL();
+      //  private BL.UserBL userBL = new BL.UserBL();
         public ActionResult Index()
         {
             return View();
@@ -40,13 +40,13 @@ namespace WebApplication1.Controllers
         }
     
 
-            [HttpPost]
+          /*  [HttpPost]
             public ActionResult Contact(ET.User user)
             {
                 userBL.Insert(user);
                 return View();
             }
-
+          */
         
     }
 }

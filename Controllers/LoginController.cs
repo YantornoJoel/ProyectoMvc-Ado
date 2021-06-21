@@ -7,8 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using ET;
-using BL;
+//using ET;
+//using BL;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
@@ -16,22 +16,22 @@ namespace WebApplication1.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly BL.UserBL userBL = new BL.UserBL();
+       // private readonly BL.UserBL userBL = new BL.UserBL();
         //private readonly ET.User userET = new ET.User();
 
         // GET: Login
         public ActionResult Index()
         {
-            ET.User model = new ET.User();
-            return View(model);
+          //  ET.User model = new ET.User();
+            return View();
         }
-        [HttpPost]
+     /*   [HttpPost]
         public ActionResult Index(ET.User model)
 
         {
 
-            var validate = userBL.Contain(model.nombre, model.password);
-            Console.WriteLine(validate);
+       //     var validate = userBL.Contain(model.nombre, model.password);
+           // Console.WriteLine(validate);
 
             //if (ModelState.IsValid)
             //{
@@ -80,6 +80,6 @@ namespace WebApplication1.Controllers
             //    }
             //}
             return View();
-        }
-    }
+        } */
+    } 
 }

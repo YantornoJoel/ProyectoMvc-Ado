@@ -10,7 +10,7 @@ namespace WebApplication1.FilterSession
 {
     public class VerifySession : ActionFilterAttribute
     {
-        private ET.User userA, userS;
+       /* private ET.User userA, userS;
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             try
@@ -38,6 +38,6 @@ namespace WebApplication1.FilterSession
             //{
             //}
 
-        }
+        } */
     }
 }
