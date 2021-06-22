@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,9 +14,7 @@ namespace WebApplication1.FilterAuth
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class AuthorizeUserRol: AuthorizeAttribute
     {
-        private usuario userA, userS;
-        
-        private MiSistemaEntities db = new MiSistemaEntities();
+        private ET.User userA, userS;
         private string roles;
         
         public AuthorizeUserRol(string roles)
@@ -21,43 +22,60 @@ namespace WebApplication1.FilterAuth
             this.roles = roles;
         }
         public override void OnAuthorization(AuthorizationContext filterContext)
-        //{
-        //    base.OnAuthorization(filterContext);
-        //}
         {
 
             try
             {
 
-                userA = (usuario)HttpContext.Current.Session["Admin"];
+                userA = (ET.User)HttpContext.Current.Session["Admin"];
                 if (userA == null)
                 {
-                    userS = (usuario)HttpContext.Current.Session["Student"];
-                    var rolName2 = (from rs in db.rol
-                                    where rs.nombre == roles
-                                    && rs.id == userS.idRol
-                                    select rs.nombre).FirstOrDefault();
-                    if (rolName2 != roles)
+                    userS = (ET.User)HttpContext.Current.Session["Student"];
+                    string connectionstring = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+
+                    SqlConnection c = new SqlConnection();
+
+                    c.ConnectionString = connectionstring;
+                    c.Open();
+                    SqlCommand cm = new SqlCommand("SELECT * FROM rol WHERE nombre = @nombre", c);
+                    cm.CommandType = CommandType.Text;
+                    cm.Parameters.AddWithValue("@nombre", userS.Rol.nombre);
+                    //cm.Parameters.AddWithValue("@password", model.password);
+                    cm.ExecuteNonQuery();
+                    SqlDataReader query = cm.ExecuteReader();
+                    query.Read();
+                    var rol = query.GetString(1);
+                    Console.WriteLine(rol);
+                    if (rol != roles)
                     {
                         filterContext.Result = new RedirectResult("~/Views/ErrorEx/Index");
                     }
                 }
                 else
                 {
-                    var rolName = (from r in db.rol
-                                   where r.id == userA.idRol
-                                   && r.nombre == roles
-                                   select r.nombre).FirstOrDefault();
+                    string connectionstring = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
 
-                    if (rolName != roles)
+                    SqlConnection c = new SqlConnection();
+                    c.ConnectionString = connectionstring;
+                    c.Open();
+
+                    SqlCommand cm = new SqlCommand("SELECT * FROM rol WHERE nombre = @nombre", c);
+                    cm.CommandType = CommandType.Text;
+                    cm.Parameters.AddWithValue("@nombre", userA.Rol.nombre);
+                    cm.ExecuteNonQuery();
+                    SqlDataReader query = cm.ExecuteReader();
+                    query.Read();
+
+                    var rol2 = query.GetString(1);
+                    Console.WriteLine(rol2);
+
+                    if (rol2 != roles)
                     {
 
                         filterContext.Result = new RedirectResult("~/Views/ErrorEx/Index");
                     }
                 }
-                
-               
-            
+
             }
             catch (Exception ex)
             {
