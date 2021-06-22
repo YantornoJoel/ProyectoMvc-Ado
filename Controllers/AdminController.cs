@@ -15,10 +15,11 @@ namespace WebApplication1.Controllers
     [AuthorizeUserRol(roles: "admin")]
     public class AdminController : Controller
     {
+        private readonly BL.UserBL userBL = new BL.UserBL();
         public ActionResult Index()
         {
-
-            return View();
+            var model = userBL.List();
+            return View(model);
         }
 
 

@@ -32,6 +32,7 @@ namespace WebApplication1.Controllers
 
             var validate = userBL.Login(model.nombre, model.password);
             Console.WriteLine(validate);
+            Session["Admin"] = model;
 
             //if (ModelState.IsValid)
             //{
@@ -79,7 +80,7 @@ namespace WebApplication1.Controllers
             //        return View();
             //    }
             //}
-            return View();
+            return RedirectToAction("Index","Admin");
         }
     }
 }
