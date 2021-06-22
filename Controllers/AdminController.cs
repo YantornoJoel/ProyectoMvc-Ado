@@ -15,13 +15,15 @@ namespace WebApplication1.Controllers
    // [AuthorizeUserRol(roles: "admin")]
     public class AdminController : Controller
     {
+        //Llamada para invocar los metodos de la capa userBL
+        private readonly BL.UserBL userBL = new BL.UserBL();
         public ActionResult Index()
         {
 
             return View();
         }
 
-        public ActionResult ListUser()
+        public ActionResult ListUser() 
         {
             return View();
         }
@@ -31,6 +33,18 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        public ActionResult Delete(int id)
+        {
+            //if (id == null)
+            //{
+            //    return View();
+            //}
+
+            var validate = userBL.Delete(id);
+            Console.WriteLine(validate);
+
+            return View();
+        }
         //GET: Admin
         [HttpPost]
         public ActionResult Index(string selectupdate, string nomupdate, string emailupdate, string passupdate, DateTime fechaupdate, int idrolupdate)
@@ -41,9 +55,9 @@ namespace WebApplication1.Controllers
 
                 //SqlConnection c = new SqlConnection("Data Source = .\\SQLEXPRESS; Initial Catalog = NSLP; Integrated Security = True");
 
-                //string connectionstring = ConfigurationManager.ConnectionStrings["MiSistemaEntities"].ConnectionString;
+                //string connectionstring = ConfigurationManager.ConnectionStrings["conection"].ConnectionString;
 
-                ////SqlConnection c = new SqlConnection();
+                //SqlConnection c = new SqlConnection();
 
                 //c.ConnectionString = connectionstring;
 
@@ -74,6 +88,8 @@ namespace WebApplication1.Controllers
 
             }
         }
+
+        
     }
 
 }

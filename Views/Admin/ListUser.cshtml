@@ -1,4 +1,4 @@
-﻿
+﻿@model List<ET.User>
 @{
     ViewBag.Title = "ListUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -79,24 +79,17 @@
         </tr>
     </thead>
     <tbody class="text-center">
-        <tr>
-            <th scope="row">1</th>
-            <td>Joel</td>
-            <td>Yantorno</td>
-            <td>joel@gmail.com</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Luis </td>
-            <td>Gerez</td>
-            <td>luis@gmail.com</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Patricio</td>
-            <td>Ruiz</td>
-            <td>pato@gmail.com</td>
-        </tr>
+        @foreach (var items in Model)
+        {
+            <tr>
+                <th scope="row">1</th>
+                <td>@items.nombre</td>
+                <td>@items.email</td>
+            </tr>
+           
+
+        }
+
     </tbody>
 </table>
     <div class="btn btn-outline-primary float-end mt-4">

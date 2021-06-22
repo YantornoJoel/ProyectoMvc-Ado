@@ -404,6 +404,7 @@
     <Content Include="Views\ListUser\Update_user.cshtml" />
     <Content Include="Views\Admin\ListUser.cshtml" />
     <Content Include="Views\Admin\Add.cshtml" />
+    <Content Include="Views\Admin\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -425,11 +426,11 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BL\BL.csproj">
+    <ProjectReference Include="..\..\..\Desktop\repos\BL\BL.csproj">
       <Project>{80e504d7-f9e7-4895-96ea-8e87485e0c95}</Project>
       <Name>BL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ET\ET.csproj">
+    <ProjectReference Include="..\..\..\Desktop\repos\ET\ET.csproj">
       <Project>{d1f906fa-b341-46e4-b875-5b6bb0a78c3a}</Project>
       <Name>ET</Name>
     </ProjectReference>

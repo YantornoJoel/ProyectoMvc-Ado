@@ -1,0 +1,18 @@
+﻿@model ET.User
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+@Html.DisplayNameFor(model => model.nombre)
+@Html.DisplayNameFor(model => model.email)
+@Html.DisplayNameFor(model => model.password)
+
+<form action="Admin/Delete" method="post">
+    <input name=@Model.Id type="hidden" />
+    <button>Eliminar</button>
+
+</form>
+
