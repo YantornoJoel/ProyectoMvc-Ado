@@ -45,13 +45,13 @@
     <Compile Include="UserBL.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\source\repos\ProjectFinalAdo\RequestDb\RequestDb.csproj">
-      <Project>{3dcbceac-dfd9-427d-b05e-88a14905a9b5}</Project>
-      <Name>RequestDb</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ET\ET.csproj">
       <Project>{d1f906fa-b341-46e4-b875-5b6bb0a78c3a}</Project>
       <Name>ET</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RequestDb\RequestDb.csproj">
+      <Project>{3dcbceac-dfd9-427d-b05e-88a14905a9b5}</Project>
+      <Name>RequestDb</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

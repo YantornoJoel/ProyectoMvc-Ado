@@ -39,95 +39,97 @@ namespace RequestDb
             //Devuelve userL(este userL coincide con el tipo requerido por el metodo "List<>/ IEnumerable")
             return userL;
         }
-        //public bool Login(string nombre , string password)
-        //{
-
-        //    List<SqlParameter> parameter = new List<SqlParameter>();
-        //    parameter.Add(acces.NewSqlParameterString("@name", nombre));
-        //    parameter.Add(acces.NewSqlParameterString("@pass", password));
-
-        //    SqlDataReader read = acces.LogIn("sp_Login", parameter);
-        //    if (read.HasRows)
-        //    {
-        //        while (read.Read())
-        //        {
-        //            UserET user = new UserET();
-
-        //            //user.id = read.GetInt32(0);
-        //            user.nombre = read.GetString(0);
-        //            //user.email = read.GetString(2);
-        //            user.password = read.GetString(1);
-        //            //user.idRol = read.GetInt32(4);
-
-        //        }
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //DataTable table = acces.Read("sp_Login", parameter);
-        ////if(table.Rows.Count > 0)
-        ////{
-        ////    if(table.Rows[0][1].ToString() == "Admin")
-        ////    {
-        ////        HttpContext.Current.Response.Redirect("AdminForm.aspx");
-
-        ////    }else if (table.Rows[0][1].ToString() == "Student")
-        ////    {
-        ////        HttpContext.Current.Response.Redirect("StudentForm.aspx");
-        ////    }
-        ////}
-
-
-        //}
-        //private ET.UserET Model(string nombre, string password)
-        //{
-        //    ET.UserET user = new ET.UserET();
-
-        //    user.nombre = nombre;
-        //    user.password = password;
-
-        //    return user;
-
-        //}
-
-        //7 public List<UserET>  listOne() 
-        //{
-        //DataTable dtblusuario = new DataTable();
-
-        //{
-
-        //SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT * FROM usuario", sqlCon);
-        //sqlDa.Fill(dtblusuario);
-        //}
-        //return ;
-
-        //    DataTable table = acces.Read("SELECT * FROM usuario",null);
-        //    var view = table.Rows[0];
-        //    List<UserET> user = new List<UserET>();
-        //    UserET users = new UserET();
-        //    users.id = Convert.ToInt32(view["id"]);
-        //    users.nombre = view["nombre"].ToString();
-        //    users.password = view["password"].ToString();
-        //    users.email = view["email"].ToString();
-        //    users.idRol = Convert.ToInt32(view["idRol"]);
-        //    user.Add(users);
-
-
-        //    return user;
-        //}
-
-        public bool Delete(int id)
+        public bool Login(string nombre, string password)
         {
-            List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(acces.NewSqlParameterInt("@id", id));
-            DataTable table = acces.Read("DELETE FROM usuario WHERE id = @id", parameters);
-            Console.WriteLine(table);
-            Console.WriteLine(parameters);
-            return true;
-        }
-       
 
+            List<SqlParameter> parameter = new List<SqlParameter>();
+            parameter.Add(acces.NewSqlParameterString("@name", nombre));
+            parameter.Add(acces.NewSqlParameterString("@pass", password));
+
+            SqlDataReader read = acces.ExecuteRead("sp_Login", parameter);
+            if (read.HasRows)
+            {
+                while (read.Read())
+                {
+                    User user = new User();
+
+                    //user.id = read.GetInt32(0);
+                    user.nombre = read.GetString(0);
+                    //user.email = read.GetString(2);
+                    user.password = read.GetString(1);
+                    //user.idRol = read.GetInt32(4);
+
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+            //DataTable table = acces.Read("sp_Login", parameter);
+            ////if(table.Rows.Count > 0)
+            ////{
+            ////    if(table.Rows[0][1].ToString() == "Admin")
+            ////    {
+            ////        HttpContext.Current.Response.Redirect("AdminForm.aspx");
+
+            ////    }else if (table.Rows[0][1].ToString() == "Student")
+            ////    {
+            ////        HttpContext.Current.Response.Redirect("StudentForm.aspx");
+            ////    }
+            ////}
+
+
+            //}
+            //private ET.UserET Model(string nombre, string password)
+            //{
+            //    ET.UserET user = new ET.UserET();
+
+            //    user.nombre = nombre;
+            //    user.password = password;
+
+            //    return user;
+
+            //}
+
+            //7 public List<UserET>  listOne() 
+            //{
+            //DataTable dtblusuario = new DataTable();
+
+            //{
+
+            //SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT * FROM usuario", sqlCon);
+            //sqlDa.Fill(dtblusuario);
+            //}
+            //return ;
+
+            //    DataTable table = acces.Read("SELECT * FROM usuario",null);
+            //    var view = table.Rows[0];
+            //    List<UserET> user = new List<UserET>();
+            //    UserET users = new UserET();
+            //    users.id = Convert.ToInt32(view["id"]);
+            //    users.nombre = view["nombre"].ToString();
+            //    users.password = view["password"].ToString();
+            //    users.email = view["email"].ToString();
+            //    users.idRol = Convert.ToInt32(view["idRol"]);
+            //    user.Add(users);
+
+
+            //    return user;
+            //}
+
+            public bool Delete(int id)
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                parameters.Add(acces.NewSqlParameterInt("@id", id));
+                DataTable table = acces.Read("DELETE FROM usuario WHERE id = @id", parameters);
+                Console.WriteLine(table);
+                Console.WriteLine(parameters);
+                return true;
+            }
+
+
+        }
     }
-}
+

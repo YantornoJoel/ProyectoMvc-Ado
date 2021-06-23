@@ -21,14 +21,20 @@ namespace BL
         {
             return DAL.List();
         }
-        public User Contain()
-        {
-            return DAL.Container();
-        }
+        //public User Contain()
+        //{
+        //    return DAL.Container();
+        //}
 
         public bool Delete(int id)
         {
             return DAL.Delete(id);
+        }
+
+        public bool Login (string nombre, string password)
+        {
+            return DAL.Login(nombre, password);
+
         }
     }
 }

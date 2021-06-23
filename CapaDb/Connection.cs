@@ -13,16 +13,30 @@ namespace CapaDb
         private SqlConnection connection = new SqlConnection();
         private void Open()
         {
-            string cs = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+            string cs = ConfigurationManager.ConnectionStrings["enlace"].ConnectionString;
             connection.ConnectionString = cs;
             connection.Open();
         }
-        private SqlCommand NewSqlCommand(string procedure)
+        //private SqlCommand NewSqlCommand(string procedure)
+        //{
+        //    SqlCommand command = new SqlCommand();
+        //    command.Connection = connection;
+        //    command.CommandText = procedure;
+        //    command.CommandType = CommandType.Text;
+        //    return command;
+        //}
+
+        private SqlCommand NewSqlCommand(string procedure, List<SqlParameter> Lparam = null)
         {
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
             command.CommandText = procedure;
-            command.CommandType = CommandType.Text;
+            command.CommandType = CommandType.StoredProcedure;
+
+            if (Lparam != null && Lparam.Count > 0)
+            {
+                command.Parameters.AddRange(Lparam.ToArray());
+            }
             return command;
         }
 
@@ -92,6 +106,18 @@ namespace CapaDb
             
 
             
+
+
+        }
+
+        public SqlDataReader ExecuteRead(string procedure, List<SqlParameter> parameters)
+        {
+
+            SqlCommand command = NewSqlCommand(procedure, parameters);
+            Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            return reader;
 
 
         }
@@ -173,6 +199,19 @@ namespace CapaDb
             SqlCommand command = NewSqlCommandRead(nameProcedure, parameters);
             command.ExecuteNonQuery();
             return command;
+        }
+
+        public SqlParameter NewSqlParameterString(string nameParam, string value)
+        {
+            SqlParameter param = new SqlParameter();
+
+            param.ParameterName = nameParam;
+            param.Value = value;
+            param.DbType = DbType.String;
+
+            return param;
+
+
         }
     }
 }

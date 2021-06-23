@@ -35,7 +35,7 @@ namespace WebApplication1.FilterAuth
                 {
                     userS = (ET.User)HttpContext.Current.Session["Student"];
 
-                    string connectionstring = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+                    string connectionstring = ConfigurationManager.ConnectionStrings["enlace"].ConnectionString;
 
                     SqlConnection c = new SqlConnection();
 
@@ -63,7 +63,7 @@ namespace WebApplication1.FilterAuth
                 }
                 else
                 {
-                    string connectionstring = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+                    string connectionstring = ConfigurationManager.ConnectionStrings["enlace"].ConnectionString;
 
                     SqlConnection c = new SqlConnection();
 
@@ -71,7 +71,7 @@ namespace WebApplication1.FilterAuth
                     c.Open();
                     SqlCommand cm = new SqlCommand("SELECT * FROM rol WHERE nombre = @nombre", c);
                     cm.CommandType = CommandType.Text;
-                    cm.Parameters.AddWithValue("@nombre", userA.password);
+                    cm.Parameters.AddWithValue("@nombre", "admin");
 
                     cm.ExecuteNonQuery();
                     SqlDataReader query = cm.ExecuteReader();

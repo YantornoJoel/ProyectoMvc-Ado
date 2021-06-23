@@ -29,7 +29,7 @@ namespace WebApplication1.Controllers
         public ActionResult Delete(int id)
         {
             var validate = userBL.Delete(id);
-            return RedirectToAction("Index","Admin");
+            return RedirectToAction("Index", "Admin");
         }
     }
 
