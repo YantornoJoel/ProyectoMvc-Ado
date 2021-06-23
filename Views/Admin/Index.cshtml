@@ -85,7 +85,7 @@
                                 <th scope="row">@items.id</th>
                                 <td>@items.nombre</td>
                                 <td>@items.email</td>
-                                <td>Editar</td>
+                                <td>@Html.ActionLink("Eliminar", "Delete",new { id = items.id})</td>
                                 <td>Eliminar</td>
                             </tr>
 
