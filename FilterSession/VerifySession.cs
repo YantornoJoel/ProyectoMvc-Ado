@@ -10,15 +10,15 @@ namespace WebApplication1.FilterSession
 {
     public class VerifySession : ActionFilterAttribute
     {
-        private usuario userA,userS;
+        private ET.User userA,userS;
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             try
             {
                 base.OnActionExecuting(filterContext);
 
-                userA = (usuario)HttpContext.Current.Session["Admin"];
-                userS = (usuario)HttpContext.Current.Session["Student"];
+                userA = (ET.User)HttpContext.Current.Session["Admin"];
+                userS = (ET.User)HttpContext.Current.Session["Student"];
 
                 if(userA == null && userS == null)
                 {
