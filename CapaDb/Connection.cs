@@ -13,16 +13,30 @@ namespace CapaDb
         private SqlConnection connection = new SqlConnection();
         private void Open()
         {
-            string cs = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+            string cs = ConfigurationManager.ConnectionStrings["enlace"].ConnectionString;
             connection.ConnectionString = cs;
             connection.Open();
         }
-        private SqlCommand NewSqlCommand(string procedure)
+        //private SqlCommand NewSqlCommand(string procedure)
+        //{
+        //    SqlCommand command = new SqlCommand();
+        //    command.Connection = connection;
+        //    command.CommandText = procedure;
+        //    command.CommandType = CommandType.Text;
+        //    return command;
+        //}
+
+        private SqlCommand NewSqlCommand(string procedure, List<SqlParameter> Lparam = null)
         {
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
             command.CommandText = procedure;
-            command.CommandType = CommandType.Text;
+            command.CommandType = CommandType.StoredProcedure;
+
+            if (Lparam != null && Lparam.Count > 0)
+            {
+                command.Parameters.AddRange(Lparam.ToArray());
+            }
             return command;
         }
 
@@ -96,6 +110,18 @@ namespace CapaDb
 
         }
 
+        public SqlDataReader ExecuteRead(string procedure, List<SqlParameter> parameters)
+        {
+
+            SqlCommand command = NewSqlCommand(procedure, parameters);
+            Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            return reader;
+
+
+        }
+
         public void Insert(User user)
         {
             Open();
@@ -119,6 +145,73 @@ namespace CapaDb
 
             Close();
             
+        }
+        // Crea el comando a ejecutar de sql = query de sql.
+        private SqlCommand NewSqlCommandRead(string procedure, List<SqlParameter> Lparam = null)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+            command.CommandText = procedure;
+            command.CommandType = CommandType.Text;
+            //if(reader != null)
+            //{
+            //    reader = command.ExecuteReader();
+            //}
+
+            if (Lparam != null && Lparam.Count > 0)
+            {
+                command.Parameters.AddRange(Lparam.ToArray());
+            }
+            return command;
+        }
+
+        // Crea un dataTable (tabla virtual que queda en memoria)
+        public DataTable Read(string procedure, List<SqlParameter> parameters = null)
+        {
+            Open();
+
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+
+            adapter.SelectCommand = NewSqlCommandRead(procedure, parameters);
+            adapter.Fill(table);
+
+            Close();
+            return table;
+        }
+
+        // crea un nuevo parametro sql
+        public SqlParameter NewSqlParameterInt(string nameParam, int value)
+        {
+            SqlParameter param = new SqlParameter();
+
+            param.ParameterName = nameParam;
+            param.Value = value;
+            param.DbType = DbType.Int32;
+
+            return param;
+
+
+        }
+
+        public SqlCommand ExecuteQuery(string nameProcedure, List<SqlParameter> parameters)
+        {
+            SqlCommand command = NewSqlCommandRead(nameProcedure, parameters);
+            command.ExecuteNonQuery();
+            return command;
+        }
+
+        public SqlParameter NewSqlParameterString(string nameParam, string value)
+        {
+            SqlParameter param = new SqlParameter();
+
+            param.ParameterName = nameParam;
+            param.Value = value;
+            param.DbType = DbType.String;
+
+            return param;
+
+
         }
     }
 }

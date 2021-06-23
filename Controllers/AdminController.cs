@@ -9,6 +9,11 @@ using WebApplication1.Models;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+using BL;
+
+
+
+
 
 namespace WebApplication1.Controllers
 {
@@ -24,7 +29,7 @@ namespace WebApplication1.Controllers
         public ActionResult Delete(int id)
         {
             var validate = userBL.Delete(id);
-            return RedirectToAction("Index","Admin");
+            return RedirectToAction("Index", "Admin");
         }
     }
 
