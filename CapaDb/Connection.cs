@@ -120,5 +120,59 @@ namespace CapaDb
             Close();
             
         }
+        // Crea el comando a ejecutar de sql = query de sql.
+        private SqlCommand NewSqlCommandRead(string procedure, List<SqlParameter> Lparam = null)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+            command.CommandText = procedure;
+            command.CommandType = CommandType.Text;
+            //if(reader != null)
+            //{
+            //    reader = command.ExecuteReader();
+            //}
+
+            if (Lparam != null && Lparam.Count > 0)
+            {
+                command.Parameters.AddRange(Lparam.ToArray());
+            }
+            return command;
+        }
+
+        // Crea un dataTable (tabla virtual que queda en memoria)
+        public DataTable Read(string procedure, List<SqlParameter> parameters = null)
+        {
+            Open();
+
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+
+            adapter.SelectCommand = NewSqlCommandRead(procedure, parameters);
+            adapter.Fill(table);
+
+            Close();
+            return table;
+        }
+
+        // crea un nuevo parametro sql
+        public SqlParameter NewSqlParameterInt(string nameParam, int value)
+        {
+            SqlParameter param = new SqlParameter();
+
+            param.ParameterName = nameParam;
+            param.Value = value;
+            param.DbType = DbType.Int32;
+
+            return param;
+
+
+        }
+
+        public SqlCommand ExecuteQuery(string nameProcedure, List<SqlParameter> parameters)
+        {
+            SqlCommand command = NewSqlCommandRead(nameProcedure, parameters);
+            command.ExecuteNonQuery();
+            return command;
+        }
     }
 }
