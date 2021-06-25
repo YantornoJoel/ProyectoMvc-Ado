@@ -1,5 +1,4 @@
-﻿//using DAL;
-using ET;
+﻿using ET;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,31 +13,81 @@ namespace RequestDb
     public class ProcedureReq
     {
         private CapaDb.Connection acces = new CapaDb.Connection();
-        //list recive un usuario del userET
-        public List<User> List()
+
+        public List<ET.User> List()
         {
-            //Se crea un nuevo DataTAble que recive un dataTable con los datos requeridos(query) de la capaDB
             DataTable table = acces.Read("Select * from usuario", null);
-            //Se crea un nuevo objeto de list<userET>(userL)
-            List<User> userL = new List<User>();
-            //Se crea un dataRow(row) que itera en filas de la tabla creada
+            List<ET.User> userL = new List<ET.User>();
             foreach (DataRow row in table.Rows)
             {
-                //se instancia un nuevo objeto de userET (user)
-                User user = new User()
+                ET.User user = new ET.User()
                 {
-                    Id = Convert.ToInt32(row["id"]),
+                    id = Convert.ToInt32(row["id"]),
                     nombre = row["nombre"].ToString(),
                     email = row["email"].ToString(),
                     password = row["password"].ToString(),
                     idRol = Convert.ToInt32(row["idRol"])
                 };
-                //Se agregan los datos del objeto al userL
+
                 userL.Add(user);
             }
-            //Devuelve userL(este userL coincide con el tipo requerido por el metodo "List<>/ IEnumerable")
+            foreach (var rol in userL)
+            {
+                List<SqlParameter> parameter = new List<SqlParameter>();
+                parameter.Add(acces.NewSqlParameterInt("@id", rol.idRol));
+                var query = acces.ExecuteReadT("Select * from  rol Where id = @id", parameter);
+                if (query.HasRows)
+                {
+                    while (query.Read())
+                    {
+                        rol.Rol.id = Convert.ToInt32(query["id"]);
+                        rol.Rol.nombre = query["nombre"].ToString();
+                    }
+                }
+            }
             return userL;
         }
+        public ET.User Find(int id)
+        {
+            List<SqlParameter> parameter = new List<SqlParameter>();
+            parameter.Add(acces.NewSqlParameterInt("@id", id));
+
+            DataTable table = acces.Read("Select * from usuario where id = @id", parameter);
+            ET.User user = new ET.User();
+
+            foreach (DataRow row in table.Rows)
+            {
+
+                user.id = Convert.ToInt32(row["id"]);
+                user.nombre = row["nombre"].ToString();
+                user.email = row["email"].ToString();
+                user.password = row["password"].ToString();
+                user.idRol = Convert.ToInt32(row["idRol"]);
+
+            }
+            return user;
+        }
+        public bool Delete(int id)
+        {
+            //DataTable table = Find(id);
+
+            return true;
+
+        }
+
+        public bool Modify(ET.User model)
+        {
+            List<SqlParameter> parameter = new List<SqlParameter>();
+            parameter.Add(acces.NewSqlParameterString("@nombre", model.nombre));
+            parameter.Add(acces.NewSqlParameterString("@email", model.email));
+            parameter.Add(acces.NewSqlParameterInt("@id", model.id));
+
+            DataTable table = acces.Read("Update usuario Set nombre = @nombre, email = @email where id =  @id", parameter);
+
+            return true;
+        }
+
+
         public bool Login(string nombre, string password)
         {
 
@@ -51,13 +100,13 @@ namespace RequestDb
             {
                 while (read.Read())
                 {
-                    User user = new User();
+                    ET.User user = new ET.User();
 
-                    //user.id = read.GetInt32(0);
-                    user.nombre = read.GetString(0);
-                    //user.email = read.GetString(2);
-                    user.password = read.GetString(1);
-                    //user.idRol = read.GetInt32(4);
+                    user.id = Convert.ToInt32(read[0]);
+                    user.nombre = read.GetString(1);
+                    user.email = read.GetString(2);
+                    user.password = read.GetString(3);
+                    user.idRol = read.GetInt32(4);
 
                 }
                 return true;
@@ -67,69 +116,70 @@ namespace RequestDb
                 return false;
             }
         }
-            //DataTable table = acces.Read("sp_Login", parameter);
-            ////if(table.Rows.Count > 0)
-            ////{
-            ////    if(table.Rows[0][1].ToString() == "Admin")
-            ////    {
-            ////        HttpContext.Current.Response.Redirect("AdminForm.aspx");
 
-            ////    }else if (table.Rows[0][1].ToString() == "Student")
-            ////    {
-            ////        HttpContext.Current.Response.Redirect("StudentForm.aspx");
-            ////    }
-            ////}
+        public ET.User Model(string nombre, string password)
+        {
+            ET.User user = new ET.User();
+            List<SqlParameter> parameter = new List<SqlParameter>();
+            parameter.Add(acces.NewSqlParameterString("@name", nombre));
+            parameter.Add(acces.NewSqlParameterString("@pass", password));
 
 
-            //}
-            //private ET.UserET Model(string nombre, string password)
-            //{
-            //    ET.UserET user = new ET.UserET();
 
-            //    user.nombre = nombre;
-            //    user.password = password;
-
-            //    return user;
-
-            //}
-
-            //7 public List<UserET>  listOne() 
-            //{
-            //DataTable dtblusuario = new DataTable();
-
-            //{
-
-            //SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT * FROM usuario", sqlCon);
-            //sqlDa.Fill(dtblusuario);
-            //}
-            //return ;
-
-            //    DataTable table = acces.Read("SELECT * FROM usuario",null);
-            //    var view = table.Rows[0];
-            //    List<UserET> user = new List<UserET>();
-            //    UserET users = new UserET();
-            //    users.id = Convert.ToInt32(view["id"]);
-            //    users.nombre = view["nombre"].ToString();
-            //    users.password = view["password"].ToString();
-            //    users.email = view["email"].ToString();
-            //    users.idRol = Convert.ToInt32(view["idRol"]);
-            //    user.Add(users);
-
-
-            //    return user;
-            //}
-
-            public bool Delete(int id)
+            SqlDataReader read = acces.ExecuteRead("sp_Login", parameter);
+            if (read.HasRows)
             {
-                List<SqlParameter> parameters = new List<SqlParameter>();
-                parameters.Add(acces.NewSqlParameterInt("@id", id));
-                DataTable table = acces.Read("DELETE FROM usuario WHERE id = @id", parameters);
-                Console.WriteLine(table);
-                Console.WriteLine(parameters);
-                return true;
-            }
+                while (read.Read())
+                {
 
+
+                    user.id = Convert.ToInt32(read[0]);
+                    user.nombre = read.GetString(1);
+                    user.email = read.GetString(2);
+                    user.password = read.GetString(3);
+                    user.idRol = read.GetInt32(4);
+
+                }
+            }
+            List<SqlParameter> parameter2 = new List<SqlParameter>();
+            parameter2.Add(acces.NewSqlParameterInt("@id", user.idRol));
+            var query = acces.ExecuteReadT("Select * from  rol Where id = @id", parameter2);
+            if (query.HasRows)
+            {
+                while (query.Read())
+                {
+                    user.Rol.id = Convert.ToInt32(query["id"]);
+                    user.Rol.nombre = query["nombre"].ToString();
+                }
+            }
+            return user;
 
         }
-    }
+        //DataTable table = acces.Read("sp_Login", parameter);
+        ////if(table.Rows.Count > 0)
+        ////{
+        ////    if(table.Rows[0][1].ToString() == "Admin")
+        ////    {
+        ////        HttpContext.Current.Response.Redirect("AdminForm.aspx");
 
+        ////    }else if (table.Rows[0][1].ToString() == "Student")
+        ////    {
+        ////        HttpContext.Current.Response.Redirect("StudentForm.aspx");
+        ////    }
+        ////}
+
+
+
+        //private ET.UserET Model(string nombre, string password)
+        //{
+        //    ET.UserET user = new ET.UserET();
+
+        //    user.nombre = nombre;
+        //    user.password = password;
+
+        //    return user;
+
+        //}
+
+    }
+}
