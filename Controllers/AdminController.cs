@@ -27,7 +27,7 @@ namespace WebApplication1.Controllers
         }
         public ActionResult Delete(int id)
         {
-            var validate = userBL.Delete(id);
+            userBL.Delete(id);
             return RedirectToAction("Index", "Admin");
         }
         public ActionResult Modify(int id)
@@ -41,7 +41,7 @@ namespace WebApplication1.Controllers
         public ActionResult Modify(ET.User model)
         {
 
-            var validate = userBL.Modify(model);
+            userBL.Modify(model);
 
             return RedirectToAction("Index", "Admin");
         }

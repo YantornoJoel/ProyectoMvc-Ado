@@ -79,7 +79,7 @@ namespace WebApplication1.FilterAuth
                     c.Open();
                     SqlCommand cm = new SqlCommand("SELECT * FROM rol WHERE nombre = @nombre", c);
                     cm.CommandType = CommandType.Text;
-                    cm.Parameters.AddWithValue("@nombre", "admin");
+                    cm.Parameters.AddWithValue("@nombre", userA.Rol.nombre);
 
                     cm.ExecuteNonQuery();
                     SqlDataReader query = cm.ExecuteReader();

@@ -40,9 +40,23 @@ namespace WebApplication1.Controllers
             }
             else
             {
-                Console.WriteLine(validate);
-                Session["Admin"] = model;
-                return RedirectToAction("Index", "Admin");
+               
+                var userModel = userBL.Model(model.nombre,model.password);
+                if(userModel.idRol == 1)
+                {
+                    Session["Admin"] = userModel;
+                    return RedirectToAction("Index", "Admin");
+
+                }
+                else if(userModel.idRol == 2)
+                {
+                    Session["Student"] = userModel;
+                    return RedirectToAction("Index", "Payment");
+
+                }
+                
+                return View();
+
 
             }
             
