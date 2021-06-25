@@ -19,16 +19,10 @@ namespace WebApplication1.FilterSession
 
                 userA = (ET.User)HttpContext.Current.Session["Admin"];
                 userS = (ET.User)HttpContext.Current.Session["Student"];
-
-                if(userA == null && userS == null)
+                if(filterContext.Controller is HomeController == false && userA == null && userS == null)
                 {
-                    if(filterContext.Controller is LoginController == false)
-                    {
-                        filterContext.HttpContext.Response.Redirect("/Login/Index");
-
-                    }
+                    return;
                 }
-
             }
             catch(Exception ex)
             {
@@ -39,5 +33,28 @@ namespace WebApplication1.FilterSession
             //}
 
         }
+        //public override void OnResultExecuted(ResultExecutedContext filterContext)
+        //{
+        //    base.OnResultExecuted(filterContext);
+        //    try
+        //    {
+        //        if (filterContext.Controller is AdminController == true && userA == null && userS == null)
+        //        {
+
+        //            if (filterContext.Controller is LoginController == false && userA == null && userS == null)
+        //            {
+        //                filterContext.HttpContext.Response.Redirect("/Login/Index");
+
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        filterContext.Result = new RedirectResult("/Login/Index" + ex.Message);
+
+        //    }
+
+            
+        //}
     }
 }

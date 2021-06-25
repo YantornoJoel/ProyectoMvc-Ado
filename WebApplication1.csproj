@@ -445,6 +445,7 @@
     <Content Include="Views\ListUser\Show_data.cshtml" />
     <Content Include="Views\ListUser\Add_user.cshtml" />
     <Content Include="Views\ListUser\Update_user.cshtml" />
+    <Content Include="Views\Admin\Modify.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
