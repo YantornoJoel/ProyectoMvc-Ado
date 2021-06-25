@@ -82,11 +82,12 @@
                         @foreach (var items in Model)
                         {
                             <tr>
-                                <th scope="row">@items.id</th>
+                                <th scope="row">@items.Id</th>
                                 <td>@items.nombre</td>
                                 <td>@items.email</td>
                                 <td>@Html.ActionLink("Eliminar", "Delete", new { id = items.id})</td>
                                 <td>@Html.ActionLink("Modificar", "Modify", new { id = items.id})</td>
+
                             </tr>
 
 

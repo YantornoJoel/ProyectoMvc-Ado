@@ -43,6 +43,7 @@ namespace WebApplication1.FilterAuth
 
                         string connectionstring = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
 
+
                         SqlConnection c = new SqlConnection();
 
                         c.ConnectionString = connectionstring;
@@ -71,7 +72,7 @@ namespace WebApplication1.FilterAuth
                 }
                 else
                 {
-                    string connectionstring = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+                    string connectionstring = ConfigurationManager.ConnectionStrings["enlace"].ConnectionString;
 
                     SqlConnection c = new SqlConnection();
 
@@ -79,6 +80,7 @@ namespace WebApplication1.FilterAuth
                     c.Open();
                     SqlCommand cm = new SqlCommand("SELECT * FROM rol WHERE nombre = @nombre", c);
                     cm.CommandType = CommandType.Text;
+
                     cm.Parameters.AddWithValue("@nombre", userA.Rol.nombre);
 
                     cm.ExecuteNonQuery();

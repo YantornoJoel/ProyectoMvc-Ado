@@ -10,7 +10,6 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
 using BL;
-using WebApplication1.FilterSession;
 
 namespace WebApplication1.Controllers
 {
@@ -27,6 +26,7 @@ namespace WebApplication1.Controllers
         }
         public ActionResult Delete(int id)
         {
+
             userBL.Delete(id);
             return RedirectToAction("Index", "Admin");
         }
