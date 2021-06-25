@@ -14,7 +14,7 @@ namespace CapaDb
 
         private void Open()
         {
-            string cs = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+            string cs = ConfigurationManager.ConnectionStrings["enlace"].ConnectionString;
             connect.ConnectionString = cs;
             connect.Open();
         }
