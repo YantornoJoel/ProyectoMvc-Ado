@@ -1,44 +1,42 @@
 ﻿using ET;
-//using CapaDb;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 
-
-
 namespace BL
 {
     public class UserBL
     {
-        private RequestDb.ProcedureReq DAL = new RequestDb.ProcedureReq();
+        private RequestDb.ProcedureReq petition = new RequestDb.ProcedureReq();
         public void Insert(User user)
         {
-            
-        }
-        public List<ET.User> List()
-        {
-            return DAL.List();
-        }
-        //public User Contain()
-        //{
-        //    return DAL.Container();
-        //}
 
+        }
+        public List<User> List()
+        {
+            return petition.List();
+        }
+        public bool Login(string nombre, string password)
+        {
+            return petition.Login(nombre, password);
+        }
         public bool Delete(int id)
         {
-            return DAL.Delete(id);
-        }
-
-        public bool Login (string nombre, string password)
-        {
-            return DAL.Login(nombre, password);
-
+            return petition.Delete(id);
         }
         public ET.User Find(int id)
         {
-            return DAL.Find(id);
+            return petition.Find(id);
+        }
+        public bool Modify(ET.User model)
+        {
+            return petition.Modify(model);
+        }
+        public ET.User Model(string name, string password)
+        {
+            return petition.Model(name, password);
         }
     }
 }
