@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detalle de usuarios</h2>
+<h1>Detalle de usuarios</h1>
 
 
 <!DOCTYPE html>
@@ -21,13 +21,15 @@
         <div class="table-responsive">
             <table class=" table table-striped table-bordered table-hover tabel-condensed">
                 <thead>
-                    <tr>
+                    <tr class="accordion-body">
                         @*<th>Id_usuario</th>*@
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th>Fecha de Nacimiento</th>
-                        <th>Rol</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Password</th>
+                        <th class="text-center">Fecha de Nacimiento</th>
+                        <th class="text-center">Seleccionar Rol</th>
+                        <th class="text-center">OPERACIONES</th>
+                        
 
                     </tr>
                 </thead>
@@ -38,69 +40,80 @@
 
 
 
-                            <tr>
+                                        <tr>
 
 
-                                @*<td>
+                                            @*<td>
 
-                                    <label name="id" value="@data_user["id"]"></label>
-
-                                   
-
-                                </td>*@
-                                <td>
-
-                                    <input name="nom" velue="@data_user["nombre"]" />
-
-                                </td>
-                                <td>
-
-                                    <input  name="email" value="@data_user["email"]" />
-
-                                </td>
-
-
-                                <td>
-
-                                    <input name="pass" value="@data_user["password"]" />
-
-                                </td>
-                                <td>
-
-                                    <input name="fecha" value="@data_user["fecha"]" />
-
-
-                                </td>
-                                <td>
-
-                                    <input name="idRol" value="@data_user["idRol"]" />
-
-                                </td>
-                                <td>
+            <label name="id" value="@data_user["id"]"></label>
 
 
 
-                                    @*<a href="~/ListUser/Update_user?">Guardar</a>*@
+        </td>*@
+                                            <td>
 
-                                    @*<button class="btn btn-success btn-lg" type="submit" runat="server" href="/ListUser/Update_user?=@data_user["id"]">Guardar</button>*@
+                                                <input name="nom" velue="@data_user["nombre"]" />
 
-                                    <button class="btn btn-success btn-lg" type="submit" runat="server">Guardar</button>
+                                            </td>
+                                            <td>
 
-                                    @*<a href="~/Views/ListUser/Update_user.cshtml">Guardar</a>*@
+                                                <input name="email" value="@data_user["email"]" />
 
-                                    <a href="/ListUser/Delete_user?id=@data_user["id"]">Eliminar</a>
+                                            </td>
 
-                                </td>
 
-                                @*<td>
-                                    <div class="form-group">
+                                            <td>
 
-                                        <input type="submit" value="Guardar" name="btn_guarda" class="btn btn-primary" />
+                                                <input name="pass" value="@data_user["password"]" />
 
-                                    </div>
-                                </td>*@
+                                            </td>
+                                            <td>
 
-                            </tr>
+                                                <input name="fecha" value="@data_user["fecha"]" />
+
+
+                                            </td>
+                                            @*<td>
+
+                                              <input name="idRol" value="@data_user["idRol"]" />
+
+                                                      </td>*@
+                                        <td>
+                                            <div class="form-group">
+                                                
+
+                                                <select name="idrol" class="form-control">
+                                                    <option value="1">ADMINISTRADOR</option>
+                                                    <option value="2">USUARIO</option>
+
+                                                </select>
+                                            </div>
+                                        </td>
+                                            <td>
+
+
+
+                                                @*<a href="~/ListUser/Update_user?">Guardar</a>*@
+
+                                                @*<button class="btn btn-success btn-lg" type="submit" runat="server" href="/ListUser/Update_user?=@data_user["id"]">Guardar</button>*@
+                                                <div class="form-control">
+                                                    <button class="btn btn-success btn-sm" type="submit" runat="server">Guardar</button>
+                                                </div>
+                                                @*<a href="~/Views/ListUser/Update_user.cshtml">Guardar</a>*@
+                                            <div class="form-control">
+                                                <a class="btn btn-success btn-sm" href="/ListUser/Delete_user?id=@data_user["id"]">Eliminar</a>
+                                            </div>
+                                            </td>
+
+                                            @*<td>
+            <div class="form-group">
+
+                <input type="submit" value="Guardar" name="btn_guarda" class="btn btn-primary" />
+
+            </div>
+        </td>*@
+
+                                        </tr>
 
 
                         }
@@ -109,7 +122,10 @@
                 </tbody>
 
             </table>
+            <div class="form-floating">
 
+                <button class="btn btn-success btn-lg float-md-end">@Html.ActionLink("Cancelar", "Show_data", "ListUser", new { area = "" }, new { @class = "navbar-brand" })</button>
+            </div>
         </div>
 
     </form>

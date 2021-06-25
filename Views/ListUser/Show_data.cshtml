@@ -14,75 +14,91 @@
 </head>
 <body>
 
-    <h2>Listado de usuarios</h2>
-    <div class="table-responsive">
-        <table class=" table table-striped table-bordered table-hover tabel-condensed">
-            <thead>
-                <tr class="table-responsive-lg">
-                    @*<th>Id_usuario</th>*@
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Fecha de Nacimiento</th>
-                    <th>rol</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    foreach (System.Data.DataRow ds in ViewBag.emp.Rows)
-                    {
+    <h1>Listado de usuarios</h1>
 
 
+                    <div class="table-responsive">
+                        <table class=" table table-striped table-bordered table-hover tabel-condensed">
+                            <thead>
+                                <tr class="accordion-body">
+                                    @*<th>Id_usuario</th>*@
+                                    <th class="text-center form-control-color">Nombre</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Password</th>
+                                    <th class="text-center">Fecha de Nacimiento</th>
+                                    <th class="text-center">rol</th>
+                                    <th class="text-center">OPERACIONES</th>
 
 
-                        <tr>
+                                </tr>
 
 
-                              @*<td>
-                                @ds["id"]                               
-                              </td>*@
-                            <td>
-                                @ds["nombre"]
-                               
-                            </td>
-                            <td>
-
-                                @ds["email"]
-
-                               
-                            </td>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (System.Data.DataRow ds in ViewBag.emp.Rows)
+                                    {
 
 
-                            <td>
-
-                                @ds["password"]
-
-                                
-
-                            </td>
-                            <td>
-                                @ds["fecha"]
 
 
-                            </td>
-                            <td>
-
-                                @ds["idRol"]
+                                        <tr>
 
 
-                            </td>
-                            <td>
-                                <a class="alert-success" href="/ListUser/Show_user_by_id?id=@ds["id"]">Actualizar</a>
-                                <a class="alert-success" href="/ListUser/Delete_user?id=@ds["id"]">Eliminar</a>
+                                            @*<td>
+                                                  @ds["id"]
+                                                </td>*@
+                                            <td>
+                                                @ds["nombre"]
 
-                            </td>
+                                            </td>
+                                            <td>
 
-                        </tr>
-                    }
-                }
-            </tbody>
-        </table>
-    </div>
+                                                @ds["email"]
+
+
+                                            </td>
+
+
+                                            <td data-ng-animate="Contraseña">
+
+                                                @ds["password"]
+
+
+
+                                            </td>
+                                            <td>
+                                                @ds["fecha"]
+
+
+                                            </td>
+                                            <td>
+
+                                                @ds["idRol"]
+
+
+                                            </td>
+
+                                            <td>
+                                                <div class="form-control">
+                                                    <a class="btn btn-success btn-sm" href="/ListUser/Show_user_by_id?id=@ds["id"]">Actualizar</a>
+                                                </div>
+                                            </td>
+
+                                            <td>
+
+
+                                                <div class="form-control">
+                                                    <a class="btn btn-success btn-sm" href="/ListUser/Delete_user?id=@ds["id"]">Eliminar</a>
+                                                </div>
+                                            </td>
+
+
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
 </body>
 </html>
