@@ -444,6 +444,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\ListUser\Show_data.cshtml" />
     <Content Include="Views\ListUser\Add_user.cshtml" />
+    <Content Include="Views\ListUser\Show_user_by_id.cshtml" />
     <Content Include="Views\ListUser\Update_user.cshtml" />
   </ItemGroup>
   <ItemGroup>

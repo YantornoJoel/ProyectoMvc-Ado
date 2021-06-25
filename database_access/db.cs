@@ -11,9 +11,16 @@ using WebApplication1.database_access;
 
 namespace WebApplication1.database_access
 {
-  
+
+    
+    
+
     public class db
     {
+
+        
+
+        
 
 
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["enlace"].ConnectionString);
@@ -34,36 +41,39 @@ namespace WebApplication1.database_access
             
 
         }
-        public void Update_user(Usuario up)
-        {
-            SqlCommand com = new SqlCommand("sp_update_user", con);
-            com.CommandType = CommandType.StoredProcedure;
-            //revisar si anda con el id
-            com.Parameters.AddWithValue("@id", up.id);
-            com.Parameters.AddWithValue("@nom", up.nombre);
-            com.Parameters.AddWithValue("@email", up.email);
-            com.Parameters.AddWithValue("@pass", up.password);
-            com.Parameters.AddWithValue("@fecha", up.fecha);
-            com.Parameters.AddWithValue("@idrol", up.idRol);
-            con.Open();
-            com.ExecuteNonQuery();
-            con.Close();
+        //public void Update_user(Usuario data_user)
+        //{
+        //    SqlCommand com = new SqlCommand("sp_update_user", con);
+        //    com.CommandType = CommandType.StoredProcedure;
+        //    //revisar si anda con el id
+        //    com.Parameters.AddWithValue("@id", data_user.nombre);
+        //    com.Parameters.AddWithValue("@nom", data_user.nombre);
+        //    com.Parameters.AddWithValue("@email", data_user.email);
+        //    com.Parameters.AddWithValue("@pass", data_user.password);
+        //    com.Parameters.AddWithValue("@fecha", data_user.fecha);
+        //    com.Parameters.AddWithValue("@idRol", data_user.idRol);
+        //    con.Open();
+        //    com.ExecuteNonQuery();
+        //    con.Close();
 
-        }
-        //trae usuarios por id:
-        public DataSet Show_user( int id)
+        //}
+        //trae usuarios por nombre:
+
+        //prueba si pasa los datos
+        public DataSet Show_user_by_id(int id)
+
         {
-            SqlCommand com = new SqlCommand("sp_traer_datos_por_id",con);
-            com.CommandType = CommandType.StoredProcedure;
+
+
+            SqlCommand com = new SqlCommand("sp_traer_datos_por_id", con);
+           com.CommandType = CommandType.StoredProcedure;
             com.Parameters.AddWithValue("@id", id);
             SqlDataAdapter da = new SqlDataAdapter(com);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            return ds;
-            
+            DataSet data_user = new DataSet();
+            da.Fill(data_user);
+            return data_user;
 
-
-
+            //DataTable a = new DataTable();
         }
 
 

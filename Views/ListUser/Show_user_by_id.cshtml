@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "Show_user_by_id";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalle de usuarios</h2>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Show_data</title>
+    <link href="~/Content/boostrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <form method="post">
+        <div class="table-responsive">
+            <table class=" table table-striped table-bordered table-hover tabel-condensed">
+                <thead>
+                    <tr>
+                        @*<th>Id_usuario</th>*@
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Rol</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (System.Data.DataRow data_user in ViewBag.emp.Rows)
+                        {
+
+
+
+                            <tr>
+
+
+                                @*<td>
+
+                                    <label name="id" value="@data_user["id"]"></label>
+
+                                   
+
+                                </td>*@
+                                <td>
+
+                                    <input name="nom" velue="@data_user["nombre"]" />
+
+                                </td>
+                                <td>
+
+                                    <input  name="email" value="@data_user["email"]" />
+
+                                </td>
+
+
+                                <td>
+
+                                    <input name="pass" value="@data_user["password"]" />
+
+                                </td>
+                                <td>
+
+                                    <input name="fecha" value="@data_user["fecha"]" />
+
+
+                                </td>
+                                <td>
+
+                                    <input name="idRol" value="@data_user["idRol"]" />
+
+                                </td>
+                                <td>
+
+
+
+                                    @*<a href="~/ListUser/Update_user?">Guardar</a>*@
+
+                                    @*<button class="btn btn-success btn-lg" type="submit" runat="server" href="/ListUser/Update_user?=@data_user["id"]">Guardar</button>*@
+
+                                    <button class="btn btn-success btn-lg" type="submit" runat="server">Guardar</button>
+
+                                    @*<a href="~/Views/ListUser/Update_user.cshtml">Guardar</a>*@
+
+                                    <a href="/ListUser/Delete_user?id=@data_user["id"]">Eliminar</a>
+
+                                </td>
+
+                                @*<td>
+                                    <div class="form-group">
+
+                                        <input type="submit" value="Guardar" name="btn_guarda" class="btn btn-primary" />
+
+                                    </div>
+                                </td>*@
+
+                            </tr>
+
+
+                        }
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </form>
+</body>
+</html>

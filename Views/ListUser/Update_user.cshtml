@@ -1,6 +1,7 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.Title = "Update_user";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -11,17 +12,20 @@
     <title>Update_user</title>
 </head>
 <body>
+
+
+    <h2>Modificar usuario</h2>
     <div>
         @*ID*@
         @{
-            foreach (System.Data.DataRow ds in ViewBag.dbmostrar.Rows)
+            foreach (System.Data.DataRow data_user in ViewBag.dbmostrar.Rows)
             {
                 <form method="post">
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right">ID</label>
 
                         <div class="col-sm-9">
-                            <input type="text" value="@ds["id"]"  name="id" class="col-xs-10 col-sm-8" />
+                            <input type="text" value="@data_user["id"]" name="id" class="col-xs-10 col-sm-8" />
 
                         </div>
                     </div>
@@ -32,7 +36,7 @@
                         <label class="col-sm-3 control-label no-padding-right">Nombre</label>
 
                         <div class="col-sm-9">
-                            <input type="text"  value="@ds["nombre"]" name="nombre" class="col-xs-10 col-sm-8" />
+                            <input type="text" value="@data_user["nombre"]" name="nombre" class="col-xs-10 col-sm-8" />
 
                         </div>
                     </div>
@@ -43,7 +47,7 @@
                         <label class="col-sm-3 control-label no-padding-right">Email</label>
 
                         <div class="col-sm-9">
-                            <input type="text" value="@ds["email"]" name="email" class="col-xs-10 col-sm-8" />
+                            <input type="text" value="@data_user["email"]" name="email" class="col-xs-10 col-sm-8" />
 
                         </div>
                     </div>
@@ -54,30 +58,38 @@
                         <label class="col-sm-3 control-label no-padding-right">Password</label>
 
                         <div class="col-sm-9">
-                            <input type="text" value="@ds["password"]" name="password" class="col-xs-10 col-sm-8" />
+                            <input type="text" value="@data_user["password"]" name="password" class="col-xs-10 col-sm-8" />
 
                         </div>
                     </div>
 
-                    @*PASSWORD*@
+                    @*FECHA*@
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right">Fecha</label>
 
                         <div class="col-sm-9">
-                            <input type="text" value="@ds["fecha"]" name="fecha" class="col-xs-10 col-sm-8" />
+                            <input type="text" value="@data_user["fecha"]" name="fecha" class="col-xs-10 col-sm-8" />
 
                         </div>
                     </div>
 
 
-                    @*PASSWORD*@
+                    @*ID ROL*@
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right">Id Rol</label>
 
                         <div class="col-sm-9">
-                            <input type="text" value="@ds["idRol"]" name="idRol" class="col-xs-10 col-sm-8" />
+                            <input type="text" value="@data_user["idRol"]" name="idRol" class="col-xs-10 col-sm-8" />
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-9">
+
+                            <input type="submit" value="submit" class="btn btn-success btn-lg" />
 
                         </div>
                     </div>

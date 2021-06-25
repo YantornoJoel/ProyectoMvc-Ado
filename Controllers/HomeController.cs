@@ -47,20 +47,17 @@ namespace WebApplication1.Controllers
 
                 try
                 {
+                    //string connectionstring = ConfigurationManager.ConnectionStrings["MiSistemaEntities"].ConnectionString;
+                    //SqlConnection  c = new SqlConnection();
+                    //c.ConnectionString = connectionstring;
+                    //using (Models.MiSistemaEntities u = new Models.MiSistemaEntities());
 
 
                     SqlConnection c = new SqlConnection("Data Source = .\\SQLEXPRESS; Initial Catalog = NSLP; Integrated Security = True");
 
-                    //string connectionstring = ConfigurationManager.ConnectionStrings["MiSistemaEntities"].ConnectionString;
+                   
 
-                    //SqlConnection  c = new SqlConnection();
-
-                    //c.ConnectionString = connectionstring;
-
-                    //using (Models.MiSistemaEntities u = new Models.MiSistemaEntities());
-
-                    
-
+              
                     SqlCommand cm = new SqlCommand("sp_insertar_user", c);
                     cm.CommandType = CommandType.StoredProcedure;
 

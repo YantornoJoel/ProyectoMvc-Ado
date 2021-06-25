@@ -1,6 +1,7 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.Title = "Show_Data";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -9,49 +10,75 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Show_data</title>
-    <link href="~/Content/boostrap.min.css" rel="stylesheet"/>
+    <link href="~/Content/boostrap.min.css" rel="stylesheet" />
 </head>
 <body>
+
+    <h2>Listado de usuarios</h2>
     <div class="table-responsive">
         <table class=" table table-striped table-bordered table-hover tabel-condensed">
             <thead>
-                <tr>
-                    <th>Id_usuario</th>
+                <tr class="table-responsive-lg">
+                    @*<th>Id_usuario</th>*@
                     <th>Nombre</th>
                     <th>Email</th>
                     <th>Password</th>
-                    <th>Fecha_nacimiento</th>
-                    <th>Id_rol</th>
-                    
+                    <th>Fecha de Nacimiento</th>
+                    <th>rol</th>
+
                 </tr>
             </thead>
             <tbody>
-                @{ 
+                @{
                     foreach (System.Data.DataRow ds in ViewBag.emp.Rows)
-                    { 
+                    {
 
 
 
-                <tr>
-                    
 
-                    <td>
+                        <tr>
 
-                   <input value="@ds["id"]" /> 
-                    
-                    </td>
-                    <td>@ds["nombre"]</td>
-                    <td>@ds["email"]</td>
-                    <td>@ds["password"]</td>
-                    <td>@ds["fecha"]</td>
-                    <td>@ds["idRol"]</td>
-                    <td>
-                        <a href="/ListUser/Update_user?@ds["id"]">Actualizar</a>
-                        <a href="/ListUser/Delete_user?@ds["id"]">Eliminar</a>
 
-                    </td>
+                              @*<td>
+                                @ds["id"]                               
+                              </td>*@
+                            <td>
+                                @ds["nombre"]
+                               
+                            </td>
+                            <td>
 
-                </tr>
+                                @ds["email"]
+
+                               
+                            </td>
+
+
+                            <td>
+
+                                @ds["password"]
+
+                                
+
+                            </td>
+                            <td>
+                                @ds["fecha"]
+
+
+                            </td>
+                            <td>
+
+                                @ds["idRol"]
+
+
+                            </td>
+                            <td>
+                                <a class="alert-success" href="/ListUser/Show_user_by_id?id=@ds["id"]">Actualizar</a>
+                                <a class="alert-success" href="/ListUser/Delete_user?id=@ds["id"]">Eliminar</a>
+
+                            </td>
+
+                        </tr>
                     }
                 }
             </tbody>
