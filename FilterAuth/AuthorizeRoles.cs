@@ -65,14 +65,14 @@ namespace WebApplication1.FilterAuth
                         //                select rs.nombre).FirstOrDefault();
                         if (rol != roles)
                         {
-                            filterContext.Result = new RedirectResult("~/Views/ErrorEx/Index");
+                            filterContext.Result = new RedirectResult("/ErrorEx/Index");
                         }
                     }
 
                 }
                 else
                 {
-                    string connectionstring = ConfigurationManager.ConnectionStrings["enlace"].ConnectionString;
+                    string connectionstring = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
 
                     SqlConnection c = new SqlConnection();
 
@@ -93,7 +93,7 @@ namespace WebApplication1.FilterAuth
                     if (rol2 != roles)
                     {
 
-                        filterContext.Result = new RedirectResult("~/Views/ErrorEx/Index");
+                        filterContext.Result = new RedirectResult("/ErrorEx/Index");
                     }
                 }
 
@@ -102,7 +102,7 @@ namespace WebApplication1.FilterAuth
             }
             catch (Exception ex)
             {
-                filterContext.Result = new RedirectResult("~/Views/ErrorEx/Index " + ex.Message + " Error en el authorize");
+                filterContext.Result = new RedirectResult("/ErrorEx/Index ");
             }
 
 
