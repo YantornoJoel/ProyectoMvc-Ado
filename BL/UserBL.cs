@@ -36,5 +36,9 @@ namespace BL
             return DAL.Login(nombre, password);
 
         }
+        public ET.User Find(int id)
+        {
+            return DAL.Find(id);
+        }
     }
 }
