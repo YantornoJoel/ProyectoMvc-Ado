@@ -10,10 +10,7 @@ namespace BL
     public class UserBL
     {
         private RequestDb.ProcedureReq petition = new RequestDb.ProcedureReq();
-        public void Insert(User user)
-        {
 
-        }
         public List<User> List()
         {
             return petition.List();

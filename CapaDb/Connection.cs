@@ -103,7 +103,18 @@ namespace CapaDb
         public SqlDataReader ExecuteRead(string procedure, List<SqlParameter> parameters)
         {
 
+            Close();
             SqlCommand command = NewSqlCommand(procedure, parameters);
+            Open();
+            SqlDataReader reader = command.ExecuteReader();
+            return reader;
+
+
+        }
+        public SqlDataReader ExecuteReadT(string procedure, List<SqlParameter> parameters)
+        {
+            Close();
+            SqlCommand command = NewSqlCommandText(procedure, parameters);
             Open();
             SqlDataReader reader = command.ExecuteReader();
 
@@ -111,6 +122,7 @@ namespace CapaDb
 
 
         }
+
 
         //public void ExecuteQuery(string procedure , List<SqlParameter> parameters)
         //{
