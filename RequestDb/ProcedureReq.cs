@@ -69,7 +69,10 @@ namespace RequestDb
         }
         public bool Delete(int id)
         {
-            //DataTable table = Find(id);
+            List<SqlParameter> parameter = new List<SqlParameter>();
+            parameter.Add(acces.NewSqlParameterInt("@id", id));
+
+            DataTable table = acces.Read("Delete from usuario where id = @id", parameter);
 
             return true;
 
