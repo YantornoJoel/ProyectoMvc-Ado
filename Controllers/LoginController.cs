@@ -20,19 +20,46 @@ namespace WebApplication1.Controllers
         //private readonly ET.User userET = new ET.User();
 
         // GET: Login
-        public ActionResult Index()
+        public ActionResult Index(string message)
         {
+            ViewBag.Message = message;
             ET.User model = new ET.User();
             return View(model);
         }
         [HttpPost]
-        public ActionResult Index(ET.User model)
+        public ActionResult Login(ET.User model)
 
         {
 
             var validate = userBL.Login(model.nombre, model.password);
-            Console.WriteLine(validate);
-            Session["Admin"] = model;
+            if(validate == false)
+            {
+                
+                return RedirectToAction("Index", new {message = "Usuario y/o contraseña incorrectos" });
+                
+            }
+            else
+            {
+               
+                var userModel = userBL.Model(model.nombre,model.password);
+                if(userModel.idRol == 1)
+                {
+                    Session["Admin"] = userModel;
+                    return RedirectToAction("Index", "Admin");
+
+                }
+                else if(userModel.idRol == 2)
+                {
+                    Session["Student"] = userModel;
+                    return RedirectToAction("Index", "Payment");
+
+                }
+                
+                return View();
+
+
+            }
+            
 
             //if (ModelState.IsValid)
             //{
@@ -56,7 +83,7 @@ namespace WebApplication1.Controllers
             //        query.Read();
             //        var rol = query.GetInt32(4);
             //        Console.WriteLine(rol);
-                   
+
 
             //        if (query != null)
             //        {
@@ -80,7 +107,6 @@ namespace WebApplication1.Controllers
             //        return View();
             //    }
             //}
-            return RedirectToAction("Index","Admin");
         }
     }
 }

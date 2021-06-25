@@ -85,8 +85,9 @@
                                 <th scope="row">@items.Id</th>
                                 <td>@items.nombre</td>
                                 <td>@items.email</td>
-                                <td>@Html.ActionLink("Eliminar", "Delete",new { id = items.Id})</td>
-                                <td>Eliminar</td>
+                                <td>@Html.ActionLink("Eliminar", "Delete", new { id = items.id})</td>
+                                <td>@Html.ActionLink("Modificar", "Modify", new { id = items.id})</td>
+
                             </tr>
 
 
@@ -94,10 +95,6 @@
 
                     </tbody>
                 </table>
-                <div class="btn btn-outline-primary float-end mt-4">
-                    @Html.ActionLink("<<Volver al inicio", "Index")
-                </div>
-
             }
 
         </div>

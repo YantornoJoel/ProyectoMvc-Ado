@@ -34,32 +34,41 @@ namespace WebApplication1.FilterAuth
                 if (userA == null)
                 {
                     userS = (ET.User)HttpContext.Current.Session["Student"];
-
-                    string connectionstring = ConfigurationManager.ConnectionStrings["enlace"].ConnectionString;
-
-                    SqlConnection c = new SqlConnection();
-
-                    c.ConnectionString = connectionstring;
-                    c.Open();
-                    SqlCommand cm = new SqlCommand("SELECT * FROM rol WHERE nombre = @nombre", c);
-                    cm.CommandType = CommandType.Text;
-                    cm.Parameters.AddWithValue("@nombre",userS.Rol.nombre );
-                    
-                    cm.ExecuteNonQuery();
-                    SqlDataReader query = cm.ExecuteReader();
-                    query.Read();
-                    var rol = query.GetString(1);
-                    Console.WriteLine(rol);
-
-
-                    //var rolName2 = (from rs in db.rol
-                    //                where rs.nombre == roles
-                    //                && rs.id == userS.idRol
-                    //                select rs.nombre).FirstOrDefault();
-                    if (rol != roles)
+                    if (userS == null)
                     {
-                        filterContext.Result = new RedirectResult("~/Views/ErrorEx/Index");
+                        filterContext.Result = new RedirectResult("/Login/Index");
                     }
+                    else
+                    {
+
+                        string connectionstring = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+
+
+                        SqlConnection c = new SqlConnection();
+
+                        c.ConnectionString = connectionstring;
+                        c.Open();
+                        SqlCommand cm = new SqlCommand("SELECT * FROM rol WHERE nombre = @nombre", c);
+                        cm.CommandType = CommandType.Text;
+                        cm.Parameters.AddWithValue("@nombre",userS.Rol.nombre );
+                    
+                        cm.ExecuteNonQuery();
+                        SqlDataReader query = cm.ExecuteReader();
+                        query.Read();
+                        var rol = query.GetString(1);
+                        Console.WriteLine(rol);
+
+
+                        //var rolName2 = (from rs in db.rol
+                        //                where rs.nombre == roles
+                        //                && rs.id == userS.idRol
+                        //                select rs.nombre).FirstOrDefault();
+                        if (rol != roles)
+                        {
+                            filterContext.Result = new RedirectResult("~/Views/ErrorEx/Index");
+                        }
+                    }
+
                 }
                 else
                 {
@@ -71,7 +80,8 @@ namespace WebApplication1.FilterAuth
                     c.Open();
                     SqlCommand cm = new SqlCommand("SELECT * FROM rol WHERE nombre = @nombre", c);
                     cm.CommandType = CommandType.Text;
-                    cm.Parameters.AddWithValue("@nombre", "admin");
+
+                    cm.Parameters.AddWithValue("@nombre", userA.Rol.nombre);
 
                     cm.ExecuteNonQuery();
                     SqlDataReader query = cm.ExecuteReader();

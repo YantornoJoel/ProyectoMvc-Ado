@@ -1,0 +1,34 @@
+﻿@model ET.User
+@{
+    ViewBag.Title = "Modify";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Modify</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(x => x.id)
+
+    <div>
+        @Html.LabelFor(x => x.nombre)
+        <div>
+            @Html.EditorFor(x => x.nombre)
+            @Html.ValidationMessageFor(x => x.nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div>
+        @Html.LabelFor(x => x.email)
+        <div>
+            @Html.EditorFor(x => x.email)
+            @Html.ValidationMessageFor(x => x.email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div>
+        <input type="submit" value="Save"/>
+    </div>
+}
+
+
+

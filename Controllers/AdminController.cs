@@ -11,24 +11,38 @@ using System.Data;
 using System.Configuration;
 using BL;
 
-
-
-
-
 namespace WebApplication1.Controllers
 {
     [AuthorizeUserRol(roles: "admin")]
     public class AdminController : Controller
     {
         private readonly BL.UserBL userBL = new BL.UserBL();
+        
         public ActionResult Index()
         {
+            
             var model = userBL.List();
             return View(model);
         }
         public ActionResult Delete(int id)
         {
-            var validate = userBL.Delete(id);
+
+            userBL.Delete(id);
+            return RedirectToAction("Index", "Admin");
+        }
+        public ActionResult Modify(int id)
+        {
+            var model = userBL.Find(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Modify(ET.User model)
+        {
+
+            userBL.Modify(model);
+
             return RedirectToAction("Index", "Admin");
         }
     }
