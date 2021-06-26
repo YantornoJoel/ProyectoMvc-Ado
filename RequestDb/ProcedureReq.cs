@@ -109,7 +109,8 @@ namespace RequestDb
                     user.nombre = read.GetString(1);
                     user.email = read.GetString(2);
                     user.password = read.GetString(3);
-                    user.idRol = read.GetInt32(4);
+                    user.fecha = read.GetDateTime(4);
+                    user.idRol = read.GetInt32(5);
 
                 }
                 return true;
@@ -140,7 +141,8 @@ namespace RequestDb
                     user.nombre = read.GetString(1);
                     user.email = read.GetString(2);
                     user.password = read.GetString(3);
-                    user.idRol = read.GetInt32(4);
+                    user.fecha = read.GetDateTime(4);
+                    user.idRol = read.GetInt32(5);
 
                 }
             }
