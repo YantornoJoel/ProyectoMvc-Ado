@@ -9,44 +9,71 @@
 @using (Html.BeginForm("Login", "Login", FormMethod.Post))
 
 {
-<br />
-<br />
-<br/>
+    <br />
+    <br />
+    <br />
     <div>
         <div class="text-danger">
             @ViewBag.Message
         </div>
     </div>
 
-    <div class="col-md-3 form-horizontal">
-        <br />
-        @Html.TextBoxFor(x => x.nombre,
-           new { @class = "form-control", placeholder = "Nombre", autofocus = "autofocus" })
-        @Html.ValidationMessageFor(x => x.nombre, null, new { @class = "text-danger" })
-        <br />
-        @Html.TextBoxFor(x => x.password,
-           new { @class = "form-control", placeholder = "Password" })
-        @Html.ValidationMessageFor(x => x.password, null, new { @class = "text-danger" })
+    @*<div class="col-md-3 form-horizontal">
+            <br />
+            @Html.TextBoxFor(x => x.nombre,
+               new { @class = "form-control", placeholder = "Nombre", autofocus = "autofocus" })
+            @Html.ValidationMessageFor(x => x.nombre, null, new { @class = "text-danger" })
+            <br />
+            @Html.TextBoxFor(x => x.password,
+               new { @class = "form-control", placeholder = "Password" })
+            @Html.ValidationMessageFor(x => x.password, null, new { @class = "text-danger" })
 
+        </div>
+        <div>
+            <button class="btn btn-primary" type="submit">
+                Enviar datos
+            </button>
+        </div>*@
+
+
+
+
+
+
+    <div class="row pt-4">
+        <div class="col-md-6 mx-auto">
+            <div class="card mt-4 text-center">
+                <div class="card-header">
+                    <h1>INGRESAR</h1>
+                </div>
+                <img src="http://assets.stickpng.com/images/585e4beacb11b227491c3399.png" class="rounded-circle mx-auto d-block mt-3 mb-4" alt="Imagen" style="max-height: 200px" />
+                <div class="card-body">
+                    
+                    <div class="form-group" style="display: block">
+                        @Html.TextBoxFor(x => x.nombre,
+                        new { @class = "form-control mb-4", @style= "min-width: 499px" , placeholder = "Nombre", autofocus = "autofocus" })
+                        @Html.ValidationMessageFor(x => x.nombre, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group mx-auto">
+                        @Html.TextBoxFor(x => x.password,
+                        new { @class = "form-control", @style = "min-width: 499px", placeholder = "Contraseña" })
+                        @Html.ValidationMessageFor(x => x.password, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-outline-primary btn-block mt-5">Iniciar Sesión</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <button class="btn btn-primary" type="submit">
-            Enviar datos
-        </button>
-    </div>
+
+
+
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
