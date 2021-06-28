@@ -50,8 +50,8 @@ namespace WebApplication1.FilterAuth
                         c.Open();
                         SqlCommand cm = new SqlCommand("SELECT * FROM rol WHERE nombre = @nombre", c);
                         cm.CommandType = CommandType.Text;
-                        cm.Parameters.AddWithValue("@nombre",userS.Rol.nombre );
-                    
+                        cm.Parameters.AddWithValue("@nombre", userS.Rol.nombre);
+
                         cm.ExecuteNonQuery();
                         SqlDataReader query = cm.ExecuteReader();
                         query.Read();
@@ -88,7 +88,7 @@ namespace WebApplication1.FilterAuth
                     query.Read();
                     var rol2 = query.GetString(1);
                     Console.WriteLine(rol2);
-                    
+
 
                     if (rol2 != roles)
                     {

@@ -32,34 +32,34 @@ namespace WebApplication1.Controllers
         {
 
             var validate = userBL.Login(model.nombre, model.password);
-            if(validate == false)
+            if (validate == false)
             {
-                
-                return RedirectToAction("Index", new {message = "Usuario y/o contraseña incorrectos" });
-                
+
+                return RedirectToAction("Index", new { message = "Usuario y/o contraseña incorrectos" });
+
             }
             else
             {
-               
-                var userModel = userBL.Model(model.nombre,model.password);
-                if(userModel.idRol == 1)
+
+                var userModel = userBL.Model(model.nombre, model.password);
+                if (userModel.idRol == 1)
                 {
                     Session["Admin"] = userModel;
                     return RedirectToAction("Index", "Admin");
 
                 }
-                else if(userModel.idRol == 2)
+                else if (userModel.idRol == 2)
                 {
                     Session["Student"] = userModel;
                     return RedirectToAction("Index", "Payment");
 
                 }
-                
+
                 return View();
 
 
             }
-            
+
 
             //if (ModelState.IsValid)
             //{

@@ -10,7 +10,7 @@ namespace WebApplication1.FilterSession
 {
     public class VerifySession : ActionFilterAttribute
     {
-        private ET.User userA,userS;
+        private ET.User userA, userS;
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             try
@@ -19,42 +19,42 @@ namespace WebApplication1.FilterSession
 
                 userA = (ET.User)HttpContext.Current.Session["Admin"];
                 userS = (ET.User)HttpContext.Current.Session["Student"];
-                if(filterContext.Controller is HomeController == false && userA == null && userS == null)
+                if (filterContext.Controller is HomeController == false && userA == null && userS == null)
                 {
                     return;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                filterContext.Result = new RedirectResult("/Login/Index"+ex.Message);
+                filterContext.Result = new RedirectResult("/Login/Index" + ex.Message);
 
             }
-            //{
-            //}
+            {
+            }
 
         }
-        //public override void OnResultExecuted(ResultExecutedContext filterContext)
-        //{
-        //    base.OnResultExecuted(filterContext);
-        //    try
-        //    {
-        //        if (filterContext.Controller is AdminController == true && userA == null && userS == null)
-        //        {
+        public override void OnResultExecuted(ResultExecutedContext filterContext)
+        {
+            base.OnResultExecuted(filterContext);
+            try
+            {
+                if (filterContext.Controller is AdminController == true && userA == null && userS == null)
+                {
 
-        //            if (filterContext.Controller is LoginController == false && userA == null && userS == null)
-        //            {
-        //                filterContext.HttpContext.Response.Redirect("/Login/Index");
+                    if (filterContext.Controller is LoginController == false && userA == null && userS == null)
+                    {
+                        filterContext.HttpContext.Response.Redirect("/Login/Index");
 
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        filterContext.Result = new RedirectResult("/Login/Index" + ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                filterContext.Result = new RedirectResult("/Login/Index" + ex.Message);
 
-        //    }
+            }
 
-            
-        //}
+
+        }
     }
 }
