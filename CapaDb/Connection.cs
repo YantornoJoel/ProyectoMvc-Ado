@@ -123,6 +123,8 @@ namespace CapaDb
 
         }
 
+        
+
 
         //public void ExecuteQuery(string procedure , List<SqlParameter> parameters)
         //{

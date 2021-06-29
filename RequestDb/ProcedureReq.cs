@@ -160,6 +160,19 @@ namespace RequestDb
             return user;
 
         }
+
+        //public bool GuardarPago(ET.User Cuota)
+        //{
+        //    List<SqlParameter> parameter = new List<SqlParameter>();
+        //    parameter.Add(acces.NewSqlParameterString("@Id", ET.Id));
+        //    parameter.Add(acces.NewSqlParameterString("@Importe", ET.Importe));
+        //    parameter.Add(acces.NewSqlParameterInt("@Carrera", ET.Carrera));
+
+        //    DataTable table = acces.Read("Insert Pago  Set id = @Id, importe = @Importe, carrera = @Carrera", parameter);
+
+        //    return true;
+        //}
+
         //DataTable table = acces.Read("sp_Login", parameter);
         ////if(table.Rows.Count > 0)
         ////{
