@@ -98,6 +98,7 @@ namespace WebApplication1.database_access
 
 
     }
+    // Paga agregar el pago guardo en la BD
     //    public void Pay(Cuota pag)
     //    {
     //        SqlConnection con = null;
