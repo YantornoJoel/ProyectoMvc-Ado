@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ET
 {
-    class Cuota
+    public class Cuota
     {
         public int id { get; set; }
-        public int impuesto { get; set; }
+        public int importe { get; set; }
         public DateTime mes { get; set; }
         public string carrera { get; set; }
     }

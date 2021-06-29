@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using WebApplication1.database_access;
+using ET;
 //using WebApplication1.Models;
 
 
@@ -16,7 +17,7 @@ namespace WebApplication1.database_access
     {
 
 
-        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["enlace"].ConnectionString);
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Connection"].ConnectionString);
 
         //SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["enlace"].ConnectionString);
         public void Add_user(Usuario usu)
@@ -97,4 +98,16 @@ namespace WebApplication1.database_access
 
 
     }
+    //    public void Pay(Cuota pag)
+    //    {
+    //        SqlConnection con = null;
+    //        SqlCommand com = new SqlCommand("sp_CretePay",con);
+    //        com.CommandType = CommandType.StoredProcedure;
+    //        com.Parameters.AddWithValue("@Id", pag.id);
+    //        com.Parameters.AddWithValue("@Importe", pag.importe);
+    //        com.Parameters.AddWithValue("@Carrera", pag.carrera);
+    //        con.Open();
+    //        com.ExecuteNonQuery();
+    //        con.Close();
+    //    }
 }
