@@ -3,19 +3,22 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2 style="color:crimson">Pago de Cuotas</h2>
+
 <center>
+    <h2 style="color:crimson">Pago de Cuotas</h2>
+    <br>
+    </br>
 
     <div>
         <label>Importe</label>
     </div>
     <div>
-        <input style="background-color:greenyellow" id="Text1" type="text" placeholder="Escribe aqui" />
+        <input class="form-control" id="Text1" type="text" placeholder="Escribe aqui" />
     </div>
     <div class="form-group">
         <label for="inputName">Mes</label>
 
-        <select name="Text2" class="form-control">
+        <select name="Text2" font class="form-select">
             <option value="1">ENERO</option>
             <option value="2">FEBRERO</option>
             <option value="3">MARZO</option>
@@ -34,12 +37,12 @@
         <label>Carrera</label>
     </div>
     <div>
-        <input style="background-color:greenyellow" id="Text3" type="text" placeholder="Escribe aqui" />
+        <input class="form-control" id="Text3" type="text" placeholder="Escribe aqui" />
     </div>
     <br>
     </br>
     <div>
-        <input style="background-color:white" id="Button" type="button" value="Pagar" onclick="alerta()" />
+        <input class="btn btn-primary" id="Button" type="button" value="Pagar" onclick="alerta()" />
         <script language="JavaScript">
 
 
@@ -60,3 +63,4 @@
         </script>
     </div>
 </center>
+
