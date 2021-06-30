@@ -58,10 +58,15 @@
     <a href="/Admin"> <i class="fas fa-users"></i> <span> Listado </span> </a>
     <a href="/Admin/AddUser"> <i class="fas fa-user-plus"></i> <span> Alta de alumno </span> </a>
     <a href="#"> <i class="fas fa-shopping-cart"></i> <span> Pago de Cuotas </span> </a>
-    <a> <span> 
-        @*<i class="fas fa-sign-out-alt"></i>*@ 
-        @Html.ActionLink("Cerrar sesión", "Logout", "Logout")
-    </span> </a>
+    <a href="/Admin/Settings"> <i class="fas fa-cog"></i> <span> Opciones </span> </a>
+    <a href="/Admin/InfoAdmin"> <i class="fas fa-info"></i> <span> Información </span> </a>
+    
+    <a>
+        <span>
+            @*<i class="fas fa-sign-out-alt"></i>*@
+            @Html.ActionLink("Cerrar sesión", "Logout", "Logout")
+        </span>
+    </a>
 </div>
 <!--Sidebar final-->
 
@@ -92,12 +97,13 @@
                                 <td>@items.nombre</td>
                                 <td>@items.email</td>
                                 <td>
-                                    <!--<button type="button" class="btn btn-outline-danger"
+                                    @*
+                                    <button type="button" class="btn btn-outline-danger"
                                             data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         Eliminar
-                                    </button>-->
+                                    </button>
                                     <!-- Modal -->
-                                    <!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -115,13 +121,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>-->
+                                    </div> *@
 
 
-                                    <div class="btn btn-outline-danger">
+                                   <div class="btn btn-outline-danger">
 
                                             @Html.ActionLink("Eliminar", "Delete", new { id = items.id })
-                                        </div>
+                                    </div>
 
 
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -57,6 +57,17 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("Index", "Admin");
         }
+
+
+        public ActionResult Settings()
+        {
+            return View();
+        }
+
+        public ActionResult InfoAdmin()
+        {
+            return View();
+        }
     }
 
 }
