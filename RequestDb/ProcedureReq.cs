@@ -8,16 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-
-
-
-
-
-
-
-
-
-
 namespace RequestDb
 {
     public class ProcedureReq
@@ -110,16 +100,16 @@ namespace RequestDb
         public bool Login(string nombre, string password)
         {
 
-            string epass2 = Security.Sec_Encrypt.GetSHA256(password);
+            //string epass2 = Security.Sec_Encrypt.GetSHA256(password);
 
             List<SqlParameter> parameter = new List<SqlParameter>();
             parameter.Add(acces.NewSqlParameterString("@name", nombre));
-            parameter.Add(acces.NewSqlParameterString("@pass", epass2));
+            parameter.Add(acces.NewSqlParameterString("@pass", password));
 
 
 
             SqlDataReader read = acces.ExecuteRead("sp_Login", parameter);
-            if (read.HasRows)
+             if (read.HasRows)
             {
                 while (read.Read())
                 {
@@ -151,11 +141,11 @@ namespace RequestDb
 
 
         {
-            string epass2 = Security.Sec_Encrypt.GetSHA256(password);
+            //string epass2 = Security.Sec_Encrypt.GetSHA256(password);
             ET.User user = new ET.User();
             List<SqlParameter> parameter = new List<SqlParameter>();
             parameter.Add(acces.NewSqlParameterString("@name", nombre));
-            parameter.Add(acces.NewSqlParameterString("@pass", epass2));
+            parameter.Add(acces.NewSqlParameterString("@pass", password));
 
             
 

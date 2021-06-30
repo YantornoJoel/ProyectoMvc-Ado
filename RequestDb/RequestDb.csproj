@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Security\Security.csproj">
-      <Project>{353f501d-e012-4a46-bb6d-7307c84e108e}</Project>
+      <Project>{e4ca3bba-ffc2-42b1-9b92-46ba2acb1ac2}</Project>
       <Name>Security</Name>
     </ProjectReference>
     <ProjectReference Include="..\CapaDb\CapaDb.csproj">
@@ -59,7 +59,7 @@
       <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\ET\ET.csproj">
-      <Project>{987A39C2-A588-4A8E-84F7-B24D97CEC1A8}</Project>
+      <Project>{d1f906fa-b341-46e4-b875-5b6bb0a78c3a}</Project>
       <Name>ET</Name>
     </ProjectReference>
   </ItemGroup>

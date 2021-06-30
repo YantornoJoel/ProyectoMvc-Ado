@@ -24,6 +24,10 @@ namespace WebApplication1.Controllers
             var model = userBL.List();
             return View(model);
         }
+        public ActionResult AddUser()
+        {
+            return View();
+        }
         public ActionResult Delete(int id)
         {
 

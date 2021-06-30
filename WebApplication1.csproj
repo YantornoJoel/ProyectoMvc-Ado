@@ -133,6 +133,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListUserController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="database_access\db.cs" />
     <Compile Include="database_access\Encrypt.cs" />
@@ -446,9 +447,11 @@
     <Content Include="Views\ListUser\Add_user.cshtml" />
     <Content Include="Views\ListUser\Update_user.cshtml" />
     <Content Include="Views\Admin\Modify.cshtml" />
+    <Content Include="Views\Admin\AddUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Logout\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ET", "ET\ET.csproj", "{D1F9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestDb", "RequestDb\RequestDb.csproj", "{3DCBCEAC-DFD9-427D-B05E-88A14905A9B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security", "..\Security\Security.csproj", "{353F501D-E012-4A46-BB6D-7307C84E108E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security", "..\Security\Security.csproj", "{E4CA3BBA-FFC2-42B1-9B92-46BA2ACB1AC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{3DCBCEAC-DFD9-427D-B05E-88A14905A9B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DCBCEAC-DFD9-427D-B05E-88A14905A9B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DCBCEAC-DFD9-427D-B05E-88A14905A9B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{353F501D-E012-4A46-BB6D-7307C84E108E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{353F501D-E012-4A46-BB6D-7307C84E108E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{353F501D-E012-4A46-BB6D-7307C84E108E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{353F501D-E012-4A46-BB6D-7307C84E108E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4CA3BBA-FFC2-42B1-9B92-46BA2ACB1AC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4CA3BBA-FFC2-42B1-9B92-46BA2ACB1AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4CA3BBA-FFC2-42B1-9B92-46BA2ACB1AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4CA3BBA-FFC2-42B1-9B92-46BA2ACB1AC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -49,7 +49,7 @@ namespace WebApplication1.Controllers
                 {
 
 
-                    SqlConnection c = new SqlConnection("Data Source = .\\SQLEXPRESS; Initial Catalog = NSLP; Integrated Security = True");
+                    SqlConnection c = new SqlConnection("Data Source = .\\SQLEXPRESS; Initial Catalog = MiSistema; Integrated Security = True");
 
                     //string connectionstring = ConfigurationManager.ConnectionStrings["MiSistemaEntities"].ConnectionString;
 
