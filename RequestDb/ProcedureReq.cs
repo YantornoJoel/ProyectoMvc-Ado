@@ -99,12 +99,12 @@ namespace RequestDb
 
         public bool Add(string name, string password, string email, DateTime date, int idRol)
         {
-            //string epass = Security.Sec_Encrypt.GetSHA256(password);
+            string epass = Security.Sec_Encrypt.GetSHA256(password);
             List<SqlParameter> parameters = new List<SqlParameter>();
 
             parameters.Add(acces.NewSqlParameterString("@nom", name));
             parameters.Add(acces.NewSqlParameterString("@email", email));
-            parameters.Add(acces.NewSqlParameterString("@pass", password));
+            parameters.Add(acces.NewSqlParameterString("@pass", epass));
             parameters.Add(acces.NewSqlParameterDate("@fecha", date));
             parameters.Add(acces.NewSqlParameterInt("@idrol", idRol));
 

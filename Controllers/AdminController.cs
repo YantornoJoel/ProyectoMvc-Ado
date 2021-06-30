@@ -64,7 +64,7 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public ActionResult InfoAdmin()
+       public ActionResult Information()
         {
             return View();
         }
