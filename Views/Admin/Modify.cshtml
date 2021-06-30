@@ -11,21 +11,21 @@
 
 @using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.ValidationSummary(true, "", new { @class = "text-danger", required = ""})
     @Html.HiddenFor(x => x.id)
 
    <div class="col-6 card p-4 mx-auto mt-5 d-block">
-    <h2 class="text-center card-header mb-5">       Modificar</h2>
+    <h2 class="text-center card-header mb-5">       Modificar Usuario</h2>
     <form>
         <div class="text-center">
-            <h5>Nombre</h5>
+            <h5>Email</h5>
             <div class="form-group ">
-                @Html.EditorFor(x => x.nombre, new { @style = "min-width: 500px" })
+                @Html.EditorFor(x => x.nombre, new { @style = "min-width: 500px"})
                 @Html.ValidationMessageFor(x => x.nombre, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="text-center">
-            <h5>Email</h5>
+            <h5>Nombre</h5>
             <div class="form-group">
                 @Html.EditorFor(x => x.email, new
            {
@@ -33,31 +33,34 @@
                @style = "min-width: 499px"
            }
            )
-                @Html.ValidationMessageFor(x => x.email, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(x => x.email, "", new { @class = "text-danger"})
             </div>
         </div>
 
-        <a href="/Admin" class="btn btn-outline-secondary mr-4">Volver</a>
+        <div class="float-center">
 
-        <button type="button" class="btn btn-outline-success" 
-                data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Guardar cambios
-        </button>
+            <a href="/Admin" class="btn btn-outline-secondary mr-4">Volver</a>
+
+            <button type="button" class="btn btn-success btn-lg float-end"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Guardar cambios
+            </button>
+        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ventana de confirmación</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Desea confirmar los cambios?</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        Datos modificados.
+                       
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" value="Save" class="btn btn-primary">Confirmar</button>
+                        <button type="submit" value="Save" class="btn btn-primary btn-success">Confirmar</button>
                     </div>
                 </div>
             </div>

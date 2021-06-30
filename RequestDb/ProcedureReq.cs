@@ -75,6 +75,9 @@ namespace RequestDb
             DataTable table = acces.Read("Delete from usuario where id = @id", parameter);
 
             return true;
+           
+
+
 
         }
 
