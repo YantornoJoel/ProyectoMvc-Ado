@@ -98,17 +98,5 @@ namespace WebApplication1.database_access
 
 
     }
-    // Paga agregar el pago guardo en la BD
-    //    public void Pay(Cuota pag)
-    //    {
-    //        SqlConnection con = null;
-    //        SqlCommand com = new SqlCommand("sp_CretePay",con);
-    //        com.CommandType = CommandType.StoredProcedure;
-    //        com.Parameters.AddWithValue("@Id", pag.id);
-    //        com.Parameters.AddWithValue("@Importe", pag.importe);
-    //        com.Parameters.AddWithValue("@Carrera", pag.carrera);
-    //        con.Open();
-    //        com.ExecuteNonQuery();
-    //        con.Close();
-    //    }
+    
 }

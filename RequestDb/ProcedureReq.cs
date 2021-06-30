@@ -161,17 +161,21 @@ namespace RequestDb
 
         }
 
-        //public bool GuardarPago(ET.User Cuota)
+        // Paga agregar el pago guardo en la BD
+        //public void Pay(Cuota pag)
         //{
-        //    List<SqlParameter> parameter = new List<SqlParameter>();
-        //    parameter.Add(acces.NewSqlParameterString("@Id", ET.Id));
-        //    parameter.Add(acces.NewSqlParameterString("@Importe", ET.Importe));
-        //    parameter.Add(acces.NewSqlParameterInt("@Carrera", ET.Carrera));
-
-        //    DataTable table = acces.Read("Insert Pago  Set id = @Id, importe = @Importe, carrera = @Carrera", parameter);
-
-        //    return true;
+        //    SqlConnection con = null;
+        //    SqlCommand com = new SqlCommand("sp_CreatePay", con);
+        //    com.CommandType = CommandType.StoredProcedure;
+        //    com.Parameters.AddWithValue("@Id", pag.id);
+        //    com.Parameters.AddWithValue("@Importe", pag.importe);
+        //    com.Parameters.AddWithValue("@Carrera", pag.carrera);
+        //    con.Open();
+        //    com.ExecuteNonQuery();
+        //    con.Close();
         //}
+
+
 
         //DataTable table = acces.Read("sp_Login", parameter);
         ////if(table.Rows.Count > 0)

@@ -8,15 +8,29 @@
 
     <div>
         <label>Importe</label>
-        <input style="background-color:greenyellow" id="Text3" type="text" placeholder="Escribe aqui" />
+        <input style="background-color:greenyellow" id="Text1" type="text" placeholder="Escribe aqui" />
     </div>
-    <div>
-        <label>Mes</label>
-        <input style="background-color:greenyellow" id="Text4" type="text" placeholder="Escribe aqui" />
+    <div class="form-group">
+        <label for="inputName">Mes</label>
+
+        <select name="Text2" class="form-control">
+            <option value="1">ENERO</option>
+            <option value="2">FEBRERO</option>
+            <option value="2">MARZO</option>
+            <option value="2">ABRIL</option>
+            <option value="2">MAYO</option>
+            <option value="2">JUNIO</option>
+            <option value="2">JULIO</option>
+            <option value="2">AGOSTO</option>
+            <option value="2">SEPTIEMBRE</option>
+            <option value="2">OCTUBRE</option>
+            <option value="2">NOVIEMBRE</option>
+            <option value="2">DICIEMBRE</option>
+        </select>
     </div>
     <div>
         <label>Carrera</label>
-        <input style="background-color:greenyellow" id="Text5" type="text" placeholder="Escribe aqui" />
+        <input style="background-color:greenyellow" id="Text3" type="text" placeholder="Escribe aqui" />
     </div>
     <div>
         <input style="background-color:white" id="Button" type="button" value="Pagar" onclick="alerta()" />
@@ -39,19 +53,22 @@
 
             function alerta() {
                 $('#Button').click(function () {
-                    if ($.trim($(('#Text1', '#Text2', '#Text3', '#Text4', '#Text5')).val()) == '') {
+                    if ($.trim($(('#Text1', '#Text2', '#Text3')).val()) == '') {
                         alert('Falta Rellenar Campos');
                         return false;
 
                     }
                     else {
+
+
                         alert("Se Realizo El Pago Correctamente");
+
                     }
                 });
             }
 
-                                    //}
-                                        //}
+                                            //}
+                                                //}
         </script>
     </div>
 </center>
