@@ -59,6 +59,7 @@ namespace WebApplication1.Controllers
 
 
             }
+
             
 
             //if (ModelState.IsValid)
@@ -107,6 +108,11 @@ namespace WebApplication1.Controllers
             //        return View();
             //    }
             //}
+        }
+        public ActionResult Log_Out()
+        {
+            Session["Admin"] = null;
+            return RedirectToAction("Index");
         }
     }
 }

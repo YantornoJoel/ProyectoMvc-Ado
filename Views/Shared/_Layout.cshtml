@@ -51,6 +51,12 @@
                             <a class="navbar-brand"> @Html.ActionLink("Ver datos", "Show_data", "ListUser", new { area = "" }, new { @class = "navbar-brand" }) </a>
 
                         </li>
+                        @if (HttpContext.Current.Session.Count > 0)
+                        {
+                            <li class="nav-item ">
+                                <a class="navbar-brand"> @Html.ActionLink("Log out", "Log_Out", "Login", new { area = "" }, new { @class = "navbar-brand" }) </a>
+                            </li>
+                        }
 
                     </ul>
                 </div>
