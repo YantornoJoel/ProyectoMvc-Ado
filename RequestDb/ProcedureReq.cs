@@ -8,11 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
+
+
+
+
+
+
+
+
+
+
 namespace RequestDb
 {
     public class ProcedureReq
     {
         private CapaDb.Connection acces = new CapaDb.Connection();
+        private Security.Sec_Encrypt enc = new Security.Sec_Encrypt();
+
+        
 
         public List<ET.User> List()
         {
@@ -97,21 +110,29 @@ namespace RequestDb
         public bool Login(string nombre, string password)
         {
 
+            string epass2 = Security.Sec_Encrypt.GetSHA256(password);
+
             List<SqlParameter> parameter = new List<SqlParameter>();
             parameter.Add(acces.NewSqlParameterString("@name", nombre));
-            parameter.Add(acces.NewSqlParameterString("@pass", password));
+            parameter.Add(acces.NewSqlParameterString("@pass", epass2));
+
+
 
             SqlDataReader read = acces.ExecuteRead("sp_Login", parameter);
             if (read.HasRows)
             {
                 while (read.Read())
                 {
+
+                    string epass = Security.Sec_Encrypt.GetSHA256(read.GetString(3));
                     ET.User user = new ET.User();
 
                     user.id = Convert.ToInt32(read[0]);
                     user.nombre = read.GetString(1);
                     user.email = read.GetString(2);
-                    user.password = read.GetString(3);
+                    //user.password = read.GetString(3);
+
+                    user.password = epass;
                     user.fecha = read.GetDateTime(4);
                     user.idRol = read.GetInt32(5);
 
@@ -125,29 +146,48 @@ namespace RequestDb
         }
 
         public ET.User Model(string nombre, string password)
+
+
+
         {
+            string epass2 = Security.Sec_Encrypt.GetSHA256(password);
             ET.User user = new ET.User();
             List<SqlParameter> parameter = new List<SqlParameter>();
             parameter.Add(acces.NewSqlParameterString("@name", nombre));
-            parameter.Add(acces.NewSqlParameterString("@pass", password));
+            parameter.Add(acces.NewSqlParameterString("@pass", epass2));
 
-
+            
 
             SqlDataReader read = acces.ExecuteRead("sp_Login", parameter);
+
+            
+                
+
             if (read.HasRows)
             {
                 while (read.Read())
                 {
+                    string epass = Security.Sec_Encrypt.GetSHA256(read.GetString(3));
+
+                    
 
 
                     user.id = Convert.ToInt32(read[0]);
                     user.nombre = read.GetString(1);
                     user.email = read.GetString(2);
-                    user.password = read.GetString(3);
+
+                    //user.password = read.GetString(3);
+
+                    user.password = epass;
+
+
+
+                    
                     user.fecha = read.GetDateTime(4);
                     user.idRol = read.GetInt32(5);
 
                 }
+
             }
             List<SqlParameter> parameter2 = new List<SqlParameter>();
             parameter2.Add(acces.NewSqlParameterInt("@id", user.idRol));
@@ -164,17 +204,17 @@ namespace RequestDb
 
         }
         //DataTable table = acces.Read("sp_Login", parameter);
-        ////if(table.Rows.Count > 0)
-        ////{
-        ////    if(table.Rows[0][1].ToString() == "Admin")
-        ////    {
-        ////        HttpContext.Current.Response.Redirect("AdminForm.aspx");
+        //if(table.Rows.Count > 0)
+        //{
+        //    if(table.Rows[0][1].ToString() == "Admin")
+        //    {
+        //        HttpContext.Current.Response.Redirect("AdminForm.aspx");
 
-        ////    }else if (table.Rows[0][1].ToString() == "Student")
-        ////    {
-        ////        HttpContext.Current.Response.Redirect("StudentForm.aspx");
-        ////    }
-        ////}
+        //    }else if (table.Rows[0][1].ToString() == "Student")
+        //    {
+        //        HttpContext.Current.Response.Redirect("StudentForm.aspx");
+        //    }
+        //}
 
 
 

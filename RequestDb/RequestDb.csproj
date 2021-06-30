@@ -46,6 +46,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Security\Security.csproj">
+      <Project>{353f501d-e012-4a46-bb6d-7307c84e108e}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CapaDb\CapaDb.csproj">
       <Project>{3891ca97-be90-4715-bd51-15ce3636d875}</Project>
       <Name>CapaDb</Name>
