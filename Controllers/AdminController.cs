@@ -13,7 +13,7 @@ using BL;
 
 namespace WebApplication1.Controllers
 {
-    [AuthorizeUserRol(roles: "Admin")]
+    [AuthorizeUserRol(roles: "admin")]
     public class AdminController : Controller
     {
         private readonly BL.UserBL userBL = new BL.UserBL();
@@ -26,6 +26,14 @@ namespace WebApplication1.Controllers
         }
         public ActionResult AddUser()
         {
+            ET.User model = new ET.User();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddUser(ET.User model)
+        {
+            var validate = userBL.Add(model.nombre, model.password, model.email, model.fecha, model.idRol);
             return View();
         }
         public ActionResult Delete(int id)

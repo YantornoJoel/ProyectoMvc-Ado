@@ -31,6 +31,11 @@ namespace BL
         {
             return petition.Modify(model);
         }
+
+        public bool Add(string name, string password, string email, DateTime date, int idRol)
+        {
+            return petition.Add(name, password, email, date, idRol);
+        }
         public ET.User Model(string name, string password)
         {
             return petition.Model(name, password);

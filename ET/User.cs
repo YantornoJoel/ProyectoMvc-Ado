@@ -10,8 +10,8 @@ namespace ET
         public string nombre { get; set; }
         public string email { get; set; }
         public string password { get; set; }
-        public DateTime fecha { get; set; } 
         public int idRol { get; set; }
+        public DateTime fecha { get; set; } 
         public Rol Rol { get; set; }
 
         public User()

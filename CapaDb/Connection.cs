@@ -14,7 +14,7 @@ namespace CapaDb
 
         private void Open()
         {
-            string cs = ConfigurationManager.ConnectionStrings["enlace"].ConnectionString;
+            string cs = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
             connect.ConnectionString = cs;
             connect.Open();
         }
@@ -32,6 +32,19 @@ namespace CapaDb
             SqlDataAdapter adapter = new SqlDataAdapter();
 
             adapter.SelectCommand = NewSqlCommandText(procedure, parameters);
+            adapter.Fill(table);
+
+            Close();
+            return table;
+        }
+        public DataTable ReadSp(string procedure, List<SqlParameter> parameters = null)
+        {
+            Open();
+
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+
+            adapter.SelectCommand = NewSqlCommand(procedure, parameters);
             adapter.Fill(table);
 
             Close();
@@ -66,6 +79,19 @@ namespace CapaDb
             param.ParameterName = nameParam;
             param.Value = value;
             param.DbType = DbType.Int32;
+
+            return param;
+
+
+        }
+
+        public SqlParameter NewSqlParameterDate(string nameParam, DateTime value)
+        {
+            SqlParameter param = new SqlParameter();
+
+            param.ParameterName = nameParam;
+            param.Value = value;
+            param.DbType = DbType.String;
 
             return param;
 

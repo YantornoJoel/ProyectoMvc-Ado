@@ -96,15 +96,31 @@ namespace RequestDb
             return true;
         }
 
+        public bool Add(string name, string password, string email, DateTime date, int idRol)
+        {
+            string epass = Security.Sec_Encrypt.GetSHA256(password);
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            parameters.Add(acces.NewSqlParameterString("@nom", name));
+            parameters.Add(acces.NewSqlParameterString("@email", email));
+            parameters.Add(acces.NewSqlParameterString("@pass", epass));
+            parameters.Add(acces.NewSqlParameterDate("@fecha", date));
+            parameters.Add(acces.NewSqlParameterInt("@idrol", idRol));
+
+            DataTable table = acces.ReadSp("sp_insertar_user", parameters);
+
+            return true;
+        }
+
 
         public bool Login(string nombre, string password)
         {
 
-            //string epass2 = Security.Sec_Encrypt.GetSHA256(password);
+            string epass2 = Security.Sec_Encrypt.GetSHA256(password);
 
             List<SqlParameter> parameter = new List<SqlParameter>();
             parameter.Add(acces.NewSqlParameterString("@name", nombre));
-            parameter.Add(acces.NewSqlParameterString("@pass", password));
+            parameter.Add(acces.NewSqlParameterString("@pass", epass2));
 
 
 
@@ -124,8 +140,8 @@ namespace RequestDb
                     //user.password = read.GetString(3);
 
                     user.password = epass;
-                    user.fecha = read.GetDateTime(4);
-                    user.idRol = read.GetInt32(5);
+                    user.idRol = read.GetInt32(4);
+                    user.fecha = read.GetDateTime(5);
 
                 }
                 return true;
@@ -137,15 +153,12 @@ namespace RequestDb
         }
 
         public ET.User Model(string nombre, string password)
-
-
-
         {
-            //string epass2 = Security.Sec_Encrypt.GetSHA256(password);
+            string epass2 = Security.Sec_Encrypt.GetSHA256(password);
             ET.User user = new ET.User();
             List<SqlParameter> parameter = new List<SqlParameter>();
             parameter.Add(acces.NewSqlParameterString("@name", nombre));
-            parameter.Add(acces.NewSqlParameterString("@pass", password));
+            parameter.Add(acces.NewSqlParameterString("@pass", epass2));
 
             
 
@@ -170,12 +183,8 @@ namespace RequestDb
                     //user.password = read.GetString(3);
 
                     user.password = epass;
-
-
-
-                    
-                    user.fecha = read.GetDateTime(4);
-                    user.idRol = read.GetInt32(5);
+                    user.idRol = read.GetInt32(4);
+                    user.fecha = read.GetDateTime(5);
 
                 }
 

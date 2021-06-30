@@ -1,7 +1,19 @@
-﻿
+﻿@model ET.User
 @{
     ViewBag.Title = "AddUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    var list = new List<SelectListItem>()
+     {
+         new SelectListItem()
+         {
+             Text="Estudiante",
+             Value = "2"
+
+         }
+    };
+
 }
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -36,10 +48,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
-    <script type="text/javascript">$(document).ready(function () {
+    <script type="text/javascript">
+    $(document).ready(function () {
             //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
             $('#userList').DataTable();
         });</script>
+    
 </head>
 
 
@@ -82,44 +96,103 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <div class="card-body">
-                                    <form class="form" role="form" autocomplete="off" method="post">
+                                    @using (Html.BeginForm("addUser", "Admin", FormMethod.Post))
+                                    {
+                                        @Html.HiddenFor(x=>x.idRol, new { @Value = 2 })
 
                                         <div class="form-group">
-                                            <label for="inputEmail3">E-mail</label>
-                                            <input type="email" class="form-control col-lg" name="nom" placeholder="Correo Electrónico" required="">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputName">Nombre Completo</label>
-                                            <input type="text" class="form-control col-lg" name="email" placeholder="Nombre Completo" required="">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputPassword3">Contraseña</label>
-                                            <input type="text" class="form-control col-lg" name="pass" placeholder="Contraseña" required="">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputName">Fecha de Nacimiento</label>
-                                            <input type="date" class="form-control col-lg" name="fecha" placeholder="Fecha Nac" required="">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputName">Seleccione el rol</label>
+                                            @Html.TextBoxFor(x => x.nombre,
+                                            new { @class = "form-control mb-4", @style = "min-width: 499px", placeholder = "Nombre", autofocus = "autofocus", required = "" })
 
-                                            <select name="idrol" class="form-control col-lg">
-                                                <option value="1">ADMINISTRADOR</option>
-                                                <option value="2">USUARIO</option>
+                                            @Html.ValidationMessageFor(x => x.nombre, null, new { @class = "text-danger" })
+                                        </div>
 
-                                            </select>
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(x => x.password,
+                                                new { @class = "form-control", @style = "min-width: 499px", placeholder = "Contraseña", @required = "" })
+
+                                            @Html.ValidationMessageFor(x => x.password, null, new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(x => x.email,
+                                                new { @class = "form-control", @style = "min-width: 499px", placeholder = "Correo Electronico", @required = "" })
+
+                                            @Html.ValidationMessageFor(x => x.email, null, new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            @Html.TextBoxFor(x => x.fecha,
+                                                new { @class = "form-control", @style = "min-width: 499px", placeholder = "Fecha", @required = "" })
+
+                                            @Html.ValidationMessageFor(x => x.fecha, null, new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="form-group">
+                                            @*@Html.DropDownListFor(x=>x.idRol ,
+                new SelectListItem(list))*@
+
+                                            @Html.LabelFor(x => x.idRol, "Estudiante")
+
                                         </div>
                                         <div class="form-group">
                                             <button type="submit" name="btnAltaUser" class="btn btn-outline-success btn-lg col-lg float-left" select="1,2">Registrar</button>
 
                                         </div>
-                                    </form>
+
+                                        @*<div class="form-group">
+                @Html.EditorFor(x => x.idRol,
+                    new { @class = "form-control", @style = "min-width: 499px", placeholder = "Rol", @required = "" })
+
+                @Html.ValidationMessageFor(x => x.idRol, null, new { @class = "text-danger" })
+            </div>*@
+
+                                        @*<div class="form-group">
+                @Html.DropDownListFor(x => x.idRol,
+                    new SelectList()
+
+                @Html.ValidationMessageFor(x => x.password, null, new { @class = "text-danger" })
+            </div>*@
+                                    }
+                                    @*<form class="form" role="form" autocomplete="off" method="post">
+
+
+                <label for="inputEmail3">E-mail</label>
+                <input type="email" class="form-control col-lg" name="nom" placeholder="Correo Electrónico" required="">
+            </div>
+            <div class="form-group">
+                <label for="inputName">Nombre Completo</label>
+                <input type="text" class="form-control col-lg" name="email" placeholder="Nombre Completo" required="">
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3">Contraseña</label>
+                <input type="text" class="form-control col-lg" name="pass" placeholder="Contraseña" required="">
+            </div>
+            <div class="form-group">
+                <label for="inputName">Fecha de Nacimiento</label>
+                <input type="date" class="form-control col-lg" name="fecha" placeholder="Fecha Nac" required="">
+            </div>
+            <div class="form-group">
+                <label for="inputName">Seleccione el rol</label>
+
+                <select name="idrol" class="form-control col-lg">
+                    <option value="1">ADMINISTRADOR</option>
+                    <option value="2">USUARIO</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" name="btnAltaUser" class="btn btn-outline-success btn-lg col-lg float-left" select="1,2">Registrar</button>
+
+            </div>
+        </form>*@
                                 </div>
 
 
 
 
-                            </div>
+                                            </div>
 
                         </div>
                     </div>
