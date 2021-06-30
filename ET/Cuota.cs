@@ -10,7 +10,7 @@ namespace ET
     {
         public int id { get; set; }
         public int importe { get; set; }
-        public DateTime mes { get; set; }
+        public string mes { get; set; }
         public string carrera { get; set; }
     }
 }

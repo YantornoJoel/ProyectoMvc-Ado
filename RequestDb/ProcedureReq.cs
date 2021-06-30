@@ -169,6 +169,7 @@ namespace RequestDb
         //    com.CommandType = CommandType.StoredProcedure;
         //    com.Parameters.AddWithValue("@Id", pag.id);
         //    com.Parameters.AddWithValue("@Importe", pag.importe);
+        //    com.Parameters.AddWithValue("@Mes", pag.carrera);
         //    com.Parameters.AddWithValue("@Carrera", pag.carrera);
         //    con.Open();
         //    com.ExecuteNonQuery();
