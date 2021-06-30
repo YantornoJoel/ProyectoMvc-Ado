@@ -13,7 +13,7 @@ namespace ET
 
         public DateTime fecha { get; set; } 
         public int idRol { get; set; }
-
+        public DateTime fecha { get; set; }
         public Rol Rol { get; set; }
 
         public User()

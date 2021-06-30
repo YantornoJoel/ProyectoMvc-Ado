@@ -13,7 +13,7 @@ using BL;
 
 namespace WebApplication1.Controllers
 {
-    [AuthorizeUserRol(roles: "admin")]
+    [AuthorizeUserRol(roles: "Admin")]
     public class AdminController : Controller
     {
         private readonly BL.UserBL userBL = new BL.UserBL();
