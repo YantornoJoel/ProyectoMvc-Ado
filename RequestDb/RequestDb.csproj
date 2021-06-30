@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Security\Security.csproj">
-      <Project>{e4ca3bba-ffc2-42b1-9b92-46ba2acb1ac2}</Project>
+      <Project>{6e8db3d7-96f9-4073-8c76-2e9d6e774a25}</Project>
       <Name>Security</Name>
     </ProjectReference>
     <ProjectReference Include="..\CapaDb\CapaDb.csproj">
